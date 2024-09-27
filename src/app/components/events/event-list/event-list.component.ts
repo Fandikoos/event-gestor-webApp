@@ -3,6 +3,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { EventsService } from '../../../services/events.service';
 import { Router } from '@angular/router';
 import { error } from 'console';
+import { eventModel } from '../../../models/event.model';
 
 @Component({
   selector: 'app-event-list',
@@ -14,7 +15,7 @@ import { error } from 'console';
 })
 export class EventListComponent implements OnInit{
 
-  eventList: Event[] = [];
+  eventList: eventModel[] = [];
   private eventService = inject(EventsService);
   private router = inject(Router);
 
@@ -24,14 +25,15 @@ export class EventListComponent implements OnInit{
   }
 
   getAllEvents(): void {
-    this.eventService.getAllEvents().subscribe(
-      (response: Event[]) => {
-        console.log(response);
+    this.eventService.getAllEvents().subscribe({
+      next: (response: eventModel[]) => {
+        //console.log(response);
         this.eventList = response;
       },
-      (error) => {
+      error: (error) => {
         console.error('Error getting the event list', error);
       }
+    }
     );
   }
 

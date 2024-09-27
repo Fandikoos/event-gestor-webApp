@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { eventModel } from '../models/event.model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class EventsService {
 
     private httpService = inject(HttpClient);
 
-    getAllEvents(): Observable<Event[]>{
-      return this.httpService.get<Event[]>(this.apiUrl);
+    getAllEvents(): Observable<eventModel[]>{
+      return this.httpService.get<eventModel[]>(this.apiUrl);
     }
 }

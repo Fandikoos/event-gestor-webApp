@@ -6,5 +6,7 @@ export interface eventModel {
     description: string,
     type: string,
     status: string,
-    participants: number
+    participants: number,
+    price: string,
+    eventImage: string
 }
