@@ -8,5 +8,5 @@ export interface eventModel {
     status: string,
     participants: number,
     price: string,
-    eventImage: string
+    eventImage: File | null;
 }

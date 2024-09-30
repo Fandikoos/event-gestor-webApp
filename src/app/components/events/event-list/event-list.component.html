@@ -1,37 +1,50 @@
 <div class="bg-white">
     <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
       <h1 class="text-5xl font-bold tracking-tight text-gray-900 text-center">All Events</h1>
-  
-      <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
 
-        <!-- Iterar sobre los eventos -->
+      <div class="flex items-center space-x-2 mt-4">
+        <a class="flex items-center text-blue-600 hover:text-blue-800 text-lg" routerLink="add-event">
+            <span class="iconify mr-2" data-icon="carbon:add-filled" style="font-size: 24px;"></span>
+            <span class="font-semibold">Add New Event</span>
+        </a>
+      </div>
+ 
+      <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
+
         @for (event of eventList; track $index) {
-
-            <div class="group relative">
-                <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-                  <!-- Imagen del evento -->
-                  <img [src]="'data:image/jpeg;base64,' + event.eventImage" [alt]="event.name" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+    
+            <div class="group relative border border-gray-300 rounded-lg shadow-md overflow-hidden transition-transform duration-200 transform hover:scale-105 p-4">
+                <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+                    <!-- Imagen del evento -->
+                    <img [src]="'data:image/jpeg;base64,' + event.eventImage" [alt]="event.name" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
                 </div>
                 <div class="mt-4 flex justify-between">
-                  <div>
-                    <!-- Nombre del evento -->
-                    <h3 class="text-sm text-gray-700">
-                      <a href="#">
-                        <span aria-hidden="true" class="absolute inset-0"></span>
-                        {{ event.name }}
-                      </a>
-                    </h3>
-                    <!-- Lugar y fecha del evento -->
-                    <p class="mt-1 text-sm text-gray-500">{{ event.place }} - {{ event.date }}</p>
-                  </div>
-                  <!-- Precio del evento -->
-                  <p class="text-sm font-medium text-gray-900">{{ event.price }}</p>
+                    <div class="pr-4">
+                        <!-- Nombre del evento -->
+                        <h3 class="text-lg font-semibold text-gray-700">
+                            <a>
+                                <span aria-hidden="true" class="absolute inset-0"></span>
+                                {{ event.name }}
+                            </a>
+                        </h3>
+                        <!-- Lugar y fecha del evento -->
+                        <p class="mt-1 text-sm text-gray-500">{{ event.place }} - {{ event.date }}</p>
+                    </div>
+                    <!-- Precio del evento -->
+                    <p class="text-lg font-medium text-gray-900">{{ event.price }} €</p>
+                </div>
+    
+                <div class="flex space-x-3 mt-4">
+                  <button type="button" class="flex-grow text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5">Details</button>
+                  <button type="button" class="flex-grow text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5">Delete</button>
+                  <button type="button" class="flex-grow text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5">Modify</button>
                 </div>
             </div>
-
+    
         }
-
+    
       </div>
+    
     </div>
   </div>
   

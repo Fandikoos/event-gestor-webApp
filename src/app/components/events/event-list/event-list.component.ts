@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { EventsService } from '../../../services/events.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 import { error } from 'console';
 import { eventModel } from '../../../models/event.model';
 
@@ -9,7 +9,7 @@ import { eventModel } from '../../../models/event.model';
   selector: 'app-event-list',
   standalone: true,
   //El comunModule sirve para importar las directivas y tal hacerlo con todos los componentes
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './event-list.component.html',
   styleUrl: './event-list.component.css'
 })
