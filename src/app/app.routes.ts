@@ -5,5 +5,5 @@ import { AddEventComponent } from './components/events/add-event/add-event.compo
 export const routes: Routes = [
     { path:'events', component: EventListComponent},
     { path:'events/add-event', component:AddEventComponent},
-    { path: '**',redirectTo: '', pathMatch: 'full'}
+    { path: '**',redirectTo: 'events', pathMatch: 'full'}
 ];

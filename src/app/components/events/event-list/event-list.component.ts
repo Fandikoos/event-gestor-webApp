@@ -37,4 +37,25 @@ export class EventListComponent implements OnInit{
     );
   }
 
+  deleteEvent(eventId: any): void {
+    if (eventId === undefined) {
+        console.error("Event id is undefined");
+        return;
+    }
+
+    if (confirm("Are you sure that you want to delete this event?")) {
+        this.eventService.deleteEvent(eventId).subscribe({
+            next: () => {
+                console.log(`The event with id: ${eventId} has been removed correctly`);
+                // Ajustar el filtrado para eliminar el evento por id
+                this.eventList = this.eventList.filter(event => event.id !== eventId);
+                console.log(this.eventList); 
+            },
+            error: (err) => {
+                console.error("Error removing this event", err);
+            }
+        });
+    }
+  }
+
 }

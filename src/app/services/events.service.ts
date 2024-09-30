@@ -20,4 +20,8 @@ export class EventsService {
     addEvent(eventData: FormData): Observable<eventModel>{
       return this.httpService.post<eventModel>(this.apiUrl, eventData);
     }
+
+    deleteEvent(eventId: number): Observable<any>{
+      return this.httpService.delete(`${this.apiUrl}/${eventId}`);
+    }
 }
