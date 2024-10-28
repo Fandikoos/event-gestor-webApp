@@ -4,8 +4,7 @@ export interface eventModel {
     date: string,
     place: string,
     description: string,
-    type: string,
-    status: string,
+    category: string,
     participants: number,
     price: string,
     eventImage: File | null;

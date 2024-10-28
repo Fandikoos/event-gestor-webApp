@@ -20,8 +20,7 @@ export class AddEventComponent {
     date: '',
     place: '',
     description: '',
-    type: '',
-    status: '',
+    category: '',
     participants: 0,
     price: '',
     eventImage: null
@@ -53,8 +52,7 @@ export class AddEventComponent {
     formData.append('date', this.newEvent.date);
     formData.append('place', this.newEvent.place);
     formData.append('description', this.newEvent.description);
-    formData.append('type', this.newEvent.type);
-    formData.append('status', this.newEvent.status);
+    formData.append('category', this.newEvent.category);
     formData.append('participants', this.newEvent.participants.toString());
     formData.append('price', this.newEvent.price);
   

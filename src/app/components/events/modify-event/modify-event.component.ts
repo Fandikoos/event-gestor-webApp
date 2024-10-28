@@ -20,8 +20,7 @@ export class ModifyEventComponent implements OnInit {
     date: '',
     place: '',
     description: '',
-    type: '',
-    status: '',
+    category: '',
     participants: 0,
     price: '',
     eventImage: null
@@ -57,8 +56,7 @@ export class ModifyEventComponent implements OnInit {
     formData.append('date', this.event.date);
     formData.append('place', this.event.place);
     formData.append('description', this.event.description);
-    formData.append('type', this.event.type);
-    formData.append('status', this.event.status);
+    formData.append('category', this.event.category);
     formData.append('participants', this.event.participants.toString());
     formData.append('price', this.event.price);
 

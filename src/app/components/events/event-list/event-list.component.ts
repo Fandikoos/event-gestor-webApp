@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { EventsService } from '../../../services/events.service';
 import { Router, RouterLink, RouterModule } from '@angular/router';
-import { error } from 'console';
 import { eventModel } from '../../../models/event.model';
 
 @Component({
@@ -27,7 +26,6 @@ export class EventListComponent implements OnInit{
   getAllEvents(): void {
     this.eventService.getAllEvents().subscribe({
       next: (response: eventModel[]) => {
-        //console.log(response);
         this.eventList = response;
       },
       error: (error) => {

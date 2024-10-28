@@ -1,69 +1,64 @@
 <div class="max-w-2xl mx-auto py-10">
-    <h1 class="text-3xl font-bold text-center mb-8">Add New Event</h1>
-    <!--Agregamos una referencia al formulario para poder acceder a su estado-->
-    <form #eventForm="ngForm" (ngSubmit)="onSubmit()" class="space-y-6">
-      <!-- Event Name -->
+  <h1 class="text-3xl font-bold text-center mb-4">Add New Event</h1>
+
+  <!-- Formulario con Bootstrap -->
+  <form #eventForm="ngForm" (ngSubmit)="onSubmit()" class="bg-white shadow-md rounded-lg p-6 space-y-6">
+    
+    <!-- Nombre del Evento -->
+    <div class="form-group">
+      <label for="name" class="form-label">Event Name</label>
+      <input id="name" type="text" [(ngModel)]="newEvent.name" name="name" class="form-control mb-2" required>
+    </div>
+
+    <!-- Fecha del Evento -->
+    <div class="form-group">
+      <label for="date" class="form-label">Event Date</label>
+      <input id="date" type="date" [(ngModel)]="newEvent.date" name="date" class="form-control mb-2" required>
+    </div>
+
+    <!-- Lugar del Evento -->
+    <div class="form-group">
+      <label for="place" class="form-label">Place</label>
+      <input id="place" type="text" [(ngModel)]="newEvent.place" name="place" class="form-control mb-2" required>
+    </div>
+
+    <!-- Descripción del Evento -->
+    <div class="form-group">
+      <label for="description" class="form-label">Description</label>
+      <textarea id="description" [(ngModel)]="newEvent.description" name="description" rows="3" class="form-control mb-2"></textarea>
+    </div>
+
+    <!-- Categoría del Evento -->
+    <div class="form-group">
+      <label for="category" class="form-label">Category</label>
+      <input id="category" type="text" [(ngModel)]="newEvent.category" name="category" class="form-control mb-2">
+    </div>
+
+    <!-- Participantes -->
+    <div class="form-group">
+      <label for="participants" class="form-label">Participants</label>
+      <input id="participants" type="number" [(ngModel)]="newEvent.participants" name="participants" class="form-control mb-2">
+    </div>
+
+    <!-- Precio del Evento -->
+    <div class="form-group">
+      <label for="price" class="form-label">Price (€)</label>
+      <input id="price" type="text" [(ngModel)]="newEvent.price" name="price" class="form-control mb-2">
+    </div>
+
+    <!-- Imagen del Evento -->
+    <div class="form-group">
+      <label for="eventImage" class="form-label">Event Image</label>
       <div>
-        <label for="name" class="block text-sm font-medium text-gray-700">Event Name</label>
-        <input id="name" type="text" [(ngModel)]="newEvent.name" name="name" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+        <input id="eventImage" type="file" (change)="onImageSelected($event)" class="form-control-file mb-2">
       </div>
-  
-      <!-- Event Date -->
-      <div>
-        <label for="date" class="block text-sm font-medium text-gray-700">Event Date</label>
-        <input id="date" type="date" [(ngModel)]="newEvent.date" name="date" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
-      </div>
-  
-      <!-- Event Place -->
-      <div>
-        <label for="place" class="block text-sm font-medium text-gray-700">Place</label>
-        <input id="place" type="text" [(ngModel)]="newEvent.place" name="place" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
-      </div>
-  
-      <!-- Event Description -->
-      <div>
-        <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
-        <textarea id="description" [(ngModel)]="newEvent.description" name="description" rows="3" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
-      </div>
-  
-      <!-- Event Type -->
-      <div>
-        <label for="type" class="block text-sm font-medium text-gray-700">Type</label>
-        <input id="type" type="text" [(ngModel)]="newEvent.type" name="type" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-      </div>
-  
-      <!-- Event Status -->
-      <div>
-        <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
-        <input id="status" type="text" [(ngModel)]="newEvent.status" name="status" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
-      </div>
-  
-      <!-- Participants -->
-      <div>
-        <label for="participants" class="block text-sm font-medium text-gray-700">Participants</label>
-        <input id="participants" type="number" [(ngModel)]="newEvent.participants" name="participants" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-      </div>
-  
-      <!-- Event Price -->
-      <div>
-        <label for="price" class="block text-sm font-medium text-gray-700">Price</label>
-        <input id="price" type="text" [(ngModel)]="newEvent.price" name="price" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-      </div>
-  
-      <!-- Event Image -->
-      <div>
-        <label for="eventImage" class="block text-sm font-medium text-gray-700">Event Image</label>
-        <!--El (change) es un evento en plantilla de angular que sirve para hacer algo cuando ocurre un cambio en el valor de ese elemtno de html, en este caso se dispara cuando se inserta un archivo file en este input y ya llama al metodo pasandolo este propio evento que contiene la informacion del evento disparado, ene ste caso un file y asi acceder a sus propeidades y tal...-->
-        <input id="eventImage" type="file" (change)="onImageSelected($event)" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-      </div>
-  
-      <!--utilizamos el [disabled] para que el boton este deshabilitado hasta que todos los campos que tienen required esten completos-->
-      <div class="text-center">
-        <!--utilizamos [ngClass] para que si el formulario es invalido el boton este en rojo y si es valido que pase a ser azul-->
-        <button type="submit" [disabled]="eventForm.invalid" 
-        [ngClass]="{'bg-red-600': eventForm.invalid, 'bg-blue-600': eventForm.valid}"
-        class="w-full inline-flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add Event</button>
-      </div>
-    </form>
+    </div>
+
+    <!-- Botón de Envío -->
+    <div class="text-center">
+      <button type="submit" [disabled]="eventForm.invalid" 
+        [ngClass]="{'btn btn-danger': eventForm.invalid, 'btn btn-primary': eventForm.valid}"
+        class="w-full btn btn-primary">Add Event</button>
+    </div>
+  </form>
 </div>
-  
