@@ -15,4 +15,21 @@ export class EventsService {
     getAllEvents(): Observable<eventModel[]>{
       return this.httpService.get<eventModel[]>(this.apiUrl);
     }
+
+    //En la api se espera recibir un FormData en vez de JSON por el tema de la imagen y tal
+    addEvent(eventData: FormData): Observable<eventModel>{
+      return this.httpService.post<eventModel>(this.apiUrl, eventData);
+    }
+
+    deleteEvent(eventId: number): Observable<any>{
+      return this.httpService.delete(`${this.apiUrl}/${eventId}`);
+    }
+
+    getEventById(eventId: number): Observable<eventModel>{
+      return this.httpService.get<eventModel>(`${this.apiUrl}/${eventId}`);
+    }
+
+    modifyEvent(eventId: number, eventData: FormData): Observable<eventModel>{
+      return this.httpService.put<eventModel>(`${this.apiUrl}/${eventId}`, eventData);
+    }
 }

@@ -1,37 +1,39 @@
-<div class="bg-white">
-    <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-      <h1 class="text-5xl font-bold tracking-tight text-gray-900 text-center">All Events</h1>
+<div class="bg-light">
+    <div class="container my-5">
+      <h1 class="display-4 text-center font-weight-bold mb-4">All Events</h1>
   
-      <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-
-        <!-- Iterar sobre los eventos -->
-        @for (event of eventList; track $index) {
-
-            <div class="group relative">
-                <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-                  <!-- Imagen del evento -->
-                  <img [src]="'data:image/jpeg;base64,' + event.eventImage" [alt]="event.name" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+      <div class="d-flex justify-content-center mb-4">
+        <a routerLink="/events/add-event" class="btn btn-primary d-flex align-items-center">
+          <span class="iconify" data-icon="gg:add" style="font-size: 24px;"></span>
+          <span class="ml-2">Add New Event</span>
+        </a>
+      </div>
+  
+      <div class="row">
+        <ng-container *ngFor="let event of eventList; let i = index">
+          <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card border-secondary rounded-lg shadow-sm h-100">
+              <img 
+                [src]="'data:image/jpeg;base64,' + event.eventImage" 
+                [alt]="event.name" 
+                class="card-img-top"
+                style="object-fit: cover; height: 200px;"
+              >
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title font-weight-bold">{{ event.name }}</h5>
+                <p class="card-text text-muted">{{ event.place }} - {{ event.date }}</p>
+                <p class="h5 text-primary mt-auto">{{ event.price }} €</p>
+    
+                <div class="d-flex justify-content-between mt-3">
+                  <button class="btn btn-info flex-grow-1 mr-1">Details</button>
+                  <button class="btn btn-danger flex-grow-1 mx-1" (click)="deleteEvent(event.id)">Delete</button>
+                  <button class="btn btn-success flex-grow-1 ml-1" [routerLink]="['modify-event', event.id]">Modify</button>
                 </div>
-                <div class="mt-4 flex justify-between">
-                  <div>
-                    <!-- Nombre del evento -->
-                    <h3 class="text-sm text-gray-700">
-                      <a href="#">
-                        <span aria-hidden="true" class="absolute inset-0"></span>
-                        {{ event.name }}
-                      </a>
-                    </h3>
-                    <!-- Lugar y fecha del evento -->
-                    <p class="mt-1 text-sm text-gray-500">{{ event.place }} - {{ event.date }}</p>
-                  </div>
-                  <!-- Precio del evento -->
-                  <p class="text-sm font-medium text-gray-900">{{ event.price }}</p>
-                </div>
+              </div>
             </div>
-
-        }
-
+          </div>
+        </ng-container>
       </div>
     </div>
-  </div>
+</div>
   
