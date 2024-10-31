@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
-import { eventModel } from '../../../models/event.model';
-import { EventsService } from '../../../services/events.service';
+import { eventModel } from '../../../core/models/event.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';  // Importamos ReactiveFormsModule
+import { EventsService } from '../../services/events.service';
 
 @Component({
   selector: 'app-modify-event',

@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
-import { EventsService } from '../../../services/events.service';
 import { Router, RouterLink, RouterModule } from '@angular/router';
-import { eventModel } from '../../../models/event.model';
+import { eventModel } from '../../../core/models/event.model';
+import { EventsService } from '../../services/events.service';
 
 @Component({
   selector: 'app-event-list',
@@ -12,7 +12,7 @@ import { eventModel } from '../../../models/event.model';
   templateUrl: './event-list.component.html',
   styleUrl: './event-list.component.css'
 })
-export class EventListComponent implements OnInit{
+export default class EventListComponent implements OnInit{
 
   eventList: eventModel[] = [];
   private eventService = inject(EventsService);

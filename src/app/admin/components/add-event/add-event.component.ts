@@ -1,9 +1,9 @@
 import { Component, inject } from '@angular/core';
-import { eventModel } from '../../../models/event.model';
-import { EventsService } from '../../../services/events.service';
+import { eventModel } from '../../../core/models/event.model';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { EventsService } from '../../services/events.service';
 
 @Component({
   selector: 'app-add-event',
