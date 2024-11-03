@@ -2,7 +2,7 @@ import { Routes } from "@angular/router";
 
 export default [
     {
-        path: 'events',
+        path: '',
         loadComponent: () => import('./components/event-list/event-list.component').then(c => c.default),
     },
     {

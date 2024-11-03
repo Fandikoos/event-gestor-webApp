@@ -2,8 +2,12 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
     {
-        path: '',
+        path: 'admin',
         loadChildren: () => import('./admin/admin.routes'),
+    },
+    {
+        path: '',
+        loadChildren: () => import('./user/user.routes'),
     },
     {
         path: '**',
