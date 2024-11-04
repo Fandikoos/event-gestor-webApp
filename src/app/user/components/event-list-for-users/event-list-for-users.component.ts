@@ -3,13 +3,15 @@ import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/cor
 import { EventsService } from '../../../admin/services/events.service';
 import { eventModel } from '../../../core/models/event.model';
 import { HeaderUserComponent } from "../header-user/header-user.component";
+import { CarouselComponent } from "../../../shared/carousel/carousel.component";
 
 @Component({
   selector: 'app-event-list-for-users',
   standalone: true,
   imports: [
     CommonModule,
-    HeaderUserComponent
+    HeaderUserComponent,
+    CarouselComponent
 ],
   templateUrl: './event-list-for-users.component.html',
   styleUrl: './event-list-for-users.component.css',

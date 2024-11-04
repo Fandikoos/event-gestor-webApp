@@ -1,69 +1,71 @@
-<div class="bg-white p-5 rounded-lg shadow-lg max-w-2xl mx-auto mt-10">
-  <h1 class="text-3xl font-bold mb-4 text-center text-gray-800">Modify Event</h1>
+<div class="p-5 rounded-lg shadow-lg max-w-2xl mx-auto mt-10" 
+  style="background-color: rgba(255, 255, 255, 0.1); backdrop-filter: blur(5px);">
+  
+  <h1 class="text-3xl font-bold mb-4 text-center text-white">Modify Event</h1>
   
   <form (ngSubmit)="onSubmit()" class="space-y-4">
     <!-- Nombre del Evento -->
     <div class="form-group">
-      <label for="name" class="form-label">Event Name</label>
+      <label for="name" class="form-label text-white">Event Name</label>
       <input type="text" id="name" [(ngModel)]="event.name" name="name" required 
              class="form-control mb-2" placeholder="Enter event name">
     </div>
     
     <!-- Fecha del Evento -->
     <div class="form-group">
-      <label for="date" class="form-label">Event Date</label>
+      <label for="date" class="form-label text-white">Event Date</label>
       <input type="date" id="date" [(ngModel)]="event.date" name="date" required 
              class="form-control mb-2">
     </div>
     
     <!-- Lugar del Evento -->
     <div class="form-group">
-      <label for="place" class="form-label">Place</label>
+      <label for="place" class="form-label text-white">Place</label>
       <input type="text" id="place" [(ngModel)]="event.place" name="place" required 
              class="form-control mb-2" placeholder="Enter event place">
     </div>
 
     <!-- Descripción del Evento -->
     <div class="form-group">
-      <label for="description" class="form-label">Description</label>
+      <label for="description" class="form-label text-white">Description</label>
       <textarea id="description" [(ngModel)]="event.description" name="description" required
                 class="form-control mb-2" rows="3" placeholder="Enter event description"></textarea>
     </div>
 
     <!-- Categoría del Evento -->
     <div class="form-group">
-      <label for="category" class="form-label">Event Category</label>
+      <label for="category" class="form-label text-white">Event Category</label>
       <input type="text" id="category" [(ngModel)]="event.category" name="category" required 
              class="form-control mb-2" placeholder="Enter event category">
     </div>
 
     <!-- Participantes -->
     <div class="form-group">
-      <label for="participants" class="form-label">Participants</label>
+      <label for="participants" class="form-label text-white">Participants</label>
       <input type="number" id="participants" [(ngModel)]="event.participants" name="participants" required 
              class="form-control mb-2" placeholder="Enter number of participants">
     </div>
 
     <!-- Precio del Evento -->
     <div class="form-group">
-      <label for="price" class="form-label">Price (€)</label>
+      <label for="price" class="form-label text-white">Price (€)</label>
       <input type="text" id="price" [(ngModel)]="event.price" name="price" required 
              class="form-control mb-2" placeholder="Enter event price">
     </div>
 
     <!-- Imagen del Evento -->
     <div class="form-group">
-      <label for="eventImage" class="form-label">Event Image</label>
+      <label for="eventImage" class="form-label text-white">Event Image</label>
       <div class="mb-3">
         <input type="file" id="eventImage" (change)="onFileSelected($event)" name="eventImage" 
-        class="form-control-file">
+               class="form-control-file">
       </div>
     </div>
 
     <!-- Botón de Envío -->
     <div class="text-center">
-      <button type="submit" 
-              class="btn btn-primary w-100">Save Changes</button>
+      <button type="submit" class="btn btn-primary w-100" 
+              style="border-radius: 20px;">Save Changes</button>
     </div>
   </form>
 </div>
