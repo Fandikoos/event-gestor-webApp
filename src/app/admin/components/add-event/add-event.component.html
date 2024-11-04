@@ -1,54 +1,56 @@
-<div class="max-w-2xl mx-auto py-10">
-  <h1 class="text-3xl font-bold text-center mb-4">Add New Event</h1>
+<div class="p-5 rounded-lg shadow-lg max-w-2xl mx-auto mt-10" 
+  style="background-color: rgba(255, 255, 255, 0.1); backdrop-filter: blur(5px);">
+  
+  <h1 class="text-3xl font-bold mb-4 text-center text-white">Add New Event</h1>
 
-  <!-- Formulario con Bootstrap -->
-  <form #eventForm="ngForm" (ngSubmit)="onSubmit()" class="bg-white shadow-md rounded-lg p-6 space-y-6">
+  <!-- Formulario -->
+  <form #eventForm="ngForm" (ngSubmit)="onSubmit()" class="space-y-4">
     
     <!-- Nombre del Evento -->
     <div class="form-group">
-      <label for="name" class="form-label">Event Name</label>
+      <label for="name" class="form-label text-white">Event Name</label>
       <input id="name" type="text" [(ngModel)]="newEvent.name" name="name" class="form-control mb-2" required>
     </div>
 
     <!-- Fecha del Evento -->
     <div class="form-group">
-      <label for="date" class="form-label">Event Date</label>
+      <label for="date" class="form-label text-white">Event Date</label>
       <input id="date" type="date" [(ngModel)]="newEvent.date" name="date" class="form-control mb-2" required>
     </div>
 
     <!-- Lugar del Evento -->
     <div class="form-group">
-      <label for="place" class="form-label">Place</label>
+      <label for="place" class="form-label text-white">Place</label>
       <input id="place" type="text" [(ngModel)]="newEvent.place" name="place" class="form-control mb-2" required>
     </div>
 
     <!-- Descripción del Evento -->
     <div class="form-group">
-      <label for="description" class="form-label">Description</label>
+      <label for="description" class="form-label text-white">Description</label>
       <textarea id="description" [(ngModel)]="newEvent.description" name="description" rows="3" class="form-control mb-2"></textarea>
     </div>
 
     <!-- Categoría del Evento -->
     <div class="form-group">
-      <label for="category" class="form-label">Category</label>
+      <label for="category" class="form-label text-white">Category</label>
       <input id="category" type="text" [(ngModel)]="newEvent.category" name="category" class="form-control mb-2">
     </div>
 
     <!-- Participantes -->
     <div class="form-group">
-      <label for="participants" class="form-label">Participants</label>
+      <label for="participants" class="form-label text-white">Participants</label>
       <input id="participants" type="number" [(ngModel)]="newEvent.participants" name="participants" class="form-control mb-2">
     </div>
 
     <!-- Precio del Evento -->
     <div class="form-group">
-      <label for="price" class="form-label">Price (€)</label>
+      <label for="price" class="form-label text-white">Price (€)</label>
       <input id="price" type="text" [(ngModel)]="newEvent.price" name="price" class="form-control mb-2">
     </div>
 
     <!-- Imagen del Evento -->
     <div class="form-group">
-      <label for="eventImage" class="form-label">Event Image</label>
+      <label for="eventImage" class="form-label text-white">Event Image</label>
       <div>
         <input id="eventImage" type="file" (change)="onImageSelected($event)" class="form-control-file mb-2">
       </div>
@@ -57,8 +59,9 @@
     <!-- Botón de Envío -->
     <div class="text-center">
       <button type="submit" [disabled]="eventForm.invalid" 
-        [ngClass]="{'btn btn-danger': eventForm.invalid, 'btn btn-primary': eventForm.valid}"
-        class="w-full btn btn-primary">Add Event</button>
+        [ngClass]="{'btn btn-danger': eventForm.invalid, 'btn btn-primary': eventForm.valid}" 
+        class="btn btn-primary w-100" 
+        style="border-radius: 20px;">Add Event</button>
     </div>
   </form>
 </div>
