@@ -4,6 +4,7 @@ import { EventsService } from '../../../admin/services/events.service';
 import { eventModel } from '../../../core/models/event.model';
 import { HeaderUserComponent } from "../header-user/header-user.component";
 import { CarouselComponent } from "../../../shared/carousel/carousel.component";
+import { MapComponent } from "../../../shared/map/map.component";
 
 @Component({
   selector: 'app-event-list-for-users',
@@ -11,7 +12,8 @@ import { CarouselComponent } from "../../../shared/carousel/carousel.component";
   imports: [
     CommonModule,
     HeaderUserComponent,
-    CarouselComponent
+    CarouselComponent,
+    MapComponent
 ],
   templateUrl: './event-list-for-users.component.html',
   styleUrl: './event-list-for-users.component.css',
