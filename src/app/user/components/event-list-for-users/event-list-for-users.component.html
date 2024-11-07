@@ -1,41 +1,58 @@
-<app-header-user></app-header-user>
 
 <section class="carousel">
     <div class="carousel-wrapper">
-        <app-carousel></app-carousel>
+        mapa
     </div>
 </section>
 
-<app-map />
-
-<section class="events container mt-5">
+<section class="events container mt-4">
   <div class="row">
     <div class="col-12">
-      <h2 class="text-center">Listado de eventos</h2>
+      <h2 class="text-center text-white">Events</h2>
     </div>
   </div>
   <div class="row justify-content-between mt-3">
-    <div class="col-md-4 mb-3">
+    <div class="col-md-2 mb-3">
       <div class="form-group">
-        <label for="categoryFilter">Buscador por categorías</label>
+        <label for="categoryFilter" class="text-white">All Categories</label>
         <select id="categoryFilter" class="form-control">
-          <option value="all">Todas las categorías</option>
-          <option value="category1">Categoría 1</option>
-          <option value="category2">Categoría 2</option>
+          <option value="all">All categories</option>
+          <option></option>
         </select>
       </div>
     </div>
-    <div class="col-md-8">
-      <div class="event-list">
-        <div class="event-item mb-4">
-          <h5>Evento 1</h5>
-          <p>Descripción del evento 1...</p>
-        </div>
-        <div class="event-item mb-4">
-          <h5>Evento 2</h5>
-          <p>Descripción del evento 2...</p>
-        </div>
+    <div class="col-md-10">
+      <div class="row">
+        @for (event of events(); track $index) {
+          <ng-container>
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="card border-0 rounded-lg shadow-lg h-100" style="background-color: rgba(255, 255, 255, 0.1); backdrop-filter: blur(5px);">
+                <img 
+                  [src]="'data:image/jpeg;base64,' + event.eventImage" 
+                  [alt]="event.name" 
+                  class="card-img-top"
+                  style="object-fit: cover; height: 200px; border-top-left-radius: 8px; border-top-right-radius: 8px;"
+                >
+                <div class="card-body d-flex flex-column text-white">
+                  <h5 class="card-title font-weight-bold">{{ event.name }}</h5>
+                  <p class="card-text">{{ event.address }} - {{ event.date | date:'longDate' }}</p>
+                  @if (event.price === '0') {
+                    <p class="h5 text-warning mt-auto">Free</p>
+                  } @else {
+                    <p class="h5 text-warning mt-auto">{{event.price | currency: 'EUR':'symbol'}}</p>
+                  }
+                  <div class="d-flex justify-content-between mt-3">
+                    <button class="btn btn-info flex-grow-1 mr-1" style="border-radius: 20px;">View</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        }
+
       </div>
     </div>
   </div>
 </section>
+
+
