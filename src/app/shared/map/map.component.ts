@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, OnInit, signal, viewChild, ViewChild } from '@angular/core';
 import { GoogleMap, MapAdvancedMarker, MapInfoWindow, MapMarker } from '@angular/google-maps';
+import { Event } from '../../user/model/interfaces';
 
 @Component({
   selector: 'app-map',
@@ -9,37 +10,58 @@ import { GoogleMap, MapAdvancedMarker, MapInfoWindow, MapMarker } from '@angular
     CommonModule,
     GoogleMap,
     MapAdvancedMarker,
-    MapInfoWindow
+    MapInfoWindow,
   ],
   templateUrl: './map.component.html',
   styleUrl: './map.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MapComponent implements OnInit{
-  @ViewChild(MapInfoWindow) infoWindow!: MapInfoWindow;
+  infoWindowRef = viewChild.required(MapInfoWindow);
 
   options!: google.maps.MapOptions;
   markerOptions!: google.maps.marker.AdvancedMarkerElementOptions;
-  advancedMarkerPosition!: google.maps.LatLngLiteral;
+  
+  center = signal<google.maps.LatLngLiteral>({lat: 41.64822064217268, lng: -0.8918917113128225});
+  zoom = signal<number>(12);
+
+  events = input.required<Event[] | undefined>();
 
   ngOnInit(): void {
     this.options = {
-      center: {lat: 41.664135, lng: -0.902116},
-      zoom: 8,
-      mapId: 'myMap'
+      center: this.center(),
+      zoom: this.zoom(),
+      mapId: '7ce303fcc384310c'
     }
     this.markerOptions = {
       gmpDraggable: false,
       gmpClickable: true,
     }
-    this.advancedMarkerPosition = {
-      lat: 41.664135, lng: -0.902116
-    }
   }
 
-  openInfoWindow(marker: MapMarker){
-    this.infoWindow.open(marker);
+  openInfoWindow(location: Event, marker: MapAdvancedMarker){
+    const content = `
+      <div class="card shadow-lg" style="width: auto; max-width: 270px; max-height: 200px; border-radius: 16px; overflow-y: auto; transition: transform 0.3s ease;">
+        <div class="card-header text-white text-center" style="background: linear-gradient(135deg, #ff512f, #f09819); border-radius: 16px 16px 0 0;">
+          <h5 class="mb-0">${location.name}</h5>
+        </div>
+        <div class="card-body text-center">
+          <p class="card-text mb-2">📅 <strong>${location.date}</strong></p>
+          <p class="card-text mb-3">📍 <strong>${location.address}</strong></p>
+          <button class="btn btn-primary w-100" style="background-color: #ff512f; border-color: #ff512f; border-radius: 30px; transition: background-color 0.3s ease;"
+            onmouseover="this.style.backgroundColor='#e04c26'"
+            onmouseout="this.style.backgroundColor='#ff512f'"
+            onclick="window.location.href='/event-details/${location.id}'">
+            Ver detalles
+          </button>
+        </div>
+      </div>
+    `;
+  
+    this.infoWindowRef().open(marker, false, content);
   }
+
+
 
   
  }

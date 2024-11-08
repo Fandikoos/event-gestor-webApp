@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
-import { CarouselComponent } from "../../../shared/carousel/carousel.component";
+import { ChangeDetectionStrategy, Component, computed, inject, OnInit } from '@angular/core';
 import { MapComponent } from "../../../shared/map/map.component";
 import { EventsUserService } from '../../services/events-users.service';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -10,7 +9,6 @@ import { toSignal } from '@angular/core/rxjs-interop';
   standalone: true,
   imports: [
     CommonModule,
-    CarouselComponent,
     MapComponent
 ],
   templateUrl: './event-list-for-users.component.html',
@@ -22,5 +20,4 @@ export class EventListForUsersComponent{
   private eventService = inject(EventsUserService);
   private events$ = this.eventService.getAllEvents();
   public events = toSignal(this.events$);
-  
 }

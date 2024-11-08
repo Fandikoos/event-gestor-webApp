@@ -1,4 +1,10 @@
 <google-map [options]="options">
-    <map-advanced-marker [options]="markerOptions" [position]="advancedMarkerPosition" ></map-advanced-marker>
-    <map-info-window>Info Window Content</map-info-window>
+    @for (location of events(); track location) {
+        <map-advanced-marker
+        #marker = "mapAdvancedMarker"
+        [options]="markerOptions" 
+        [position]="{ lat: location.lat, lng: location.lng }" 
+        (mapClick)="openInfoWindow(location, marker)" />
+    }
+    <map-info-window></map-info-window>
 </google-map>

@@ -15,4 +15,5 @@ export class EventsUserService {
     return this.http.get<Event[]>(this.url)
   }
 
+
 }
