@@ -42,7 +42,7 @@
                     <p class="h5 text-warning mt-auto">{{event.price | currency: 'EUR':'symbol'}}</p>
                   }
                   <div class="d-flex justify-content-between mt-3">
-                    <button class="btn btn-info flex-grow-1 mr-1" style="border-radius: 20px;">View</button>
+                    <button [routerLink]="['/event-details', event.id]" class="btn btn-info flex-grow-1 mr-1" style="border-radius: 20px;">View</button>
                   </div>
                 </div>
               </div>

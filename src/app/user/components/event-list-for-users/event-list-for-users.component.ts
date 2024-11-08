@@ -3,13 +3,15 @@ import { ChangeDetectionStrategy, Component, computed, inject, OnInit } from '@a
 import { MapComponent } from "../../../shared/map/map.component";
 import { EventsUserService } from '../../services/events-users.service';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-event-list-for-users',
   standalone: true,
   imports: [
     CommonModule,
-    MapComponent
+    MapComponent,
+    RouterLink,
 ],
   templateUrl: './event-list-for-users.component.html',
   styleUrl: './event-list-for-users.component.css',

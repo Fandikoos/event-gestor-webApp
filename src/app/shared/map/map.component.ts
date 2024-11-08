@@ -22,21 +22,37 @@ export class MapComponent implements OnInit{
   options!: google.maps.MapOptions;
   markerOptions!: google.maps.marker.AdvancedMarkerElementOptions;
   
-  center = signal<google.maps.LatLngLiteral>({lat: 41.64822064217268, lng: -0.8918917113128225});
-  zoom = signal<number>(12);
+  center = signal<google.maps.LatLngLiteral>({lat:0, lng: 0});
+  zoom = signal<number>(0);
 
-  events = input.required<Event[] | undefined>();
+  events = input<Event[]>();
+  singleEvent = input<Event>();
 
   ngOnInit(): void {
+    if(this.singleEvent()){
+      this.center.set({
+        lat: this.singleEvent()?.lat || 0,
+        lng: this.singleEvent()?.lng || 0,
+      }),
+      this.zoom.set(17);
+    } else {
+      this.center.set({
+        lat: 40.415347,
+        lng: -3.707371,
+      })
+      this.zoom.set(6);
+    }
+    
     this.options = {
       center: this.center(),
       zoom: this.zoom(),
       mapId: '7ce303fcc384310c'
-    }
+    } 
     this.markerOptions = {
       gmpDraggable: false,
       gmpClickable: true,
     }
+
   }
 
   openInfoWindow(location: Event, marker: MapAdvancedMarker){

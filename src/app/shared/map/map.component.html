@@ -1,10 +1,17 @@
 <google-map [options]="options">
-    @for (location of events(); track location) {
+    @if (singleEvent()) {
         <map-advanced-marker
         #marker = "mapAdvancedMarker"
         [options]="markerOptions" 
-        [position]="{ lat: location.lat, lng: location.lng }" 
-        (mapClick)="openInfoWindow(location, marker)" />
+        [position]="{ lat: singleEvent()?.lat || 0, lng: singleEvent()?.lng || 0}" />
+    } @else {
+        @for (location of events(); track location) {
+            <map-advanced-marker
+            #marker = "mapAdvancedMarker"
+            [options]="markerOptions" 
+            [position]="{ lat: location.lat, lng: location.lng }" 
+            (mapClick)="openInfoWindow(location, marker)" />
+        }
     }
     <map-info-window></map-info-window>
 </google-map>

@@ -15,5 +15,7 @@ export class EventsUserService {
     return this.http.get<Event[]>(this.url)
   }
 
-
+  getEventById(eventId: number):Observable<Event>{
+    return this.http.get<Event>(`${this.url}/${eventId}`);
+  }
 }

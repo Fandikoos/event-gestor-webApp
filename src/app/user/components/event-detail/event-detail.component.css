@@ -1,0 +1,12 @@
+.carousel-wrapper {
+  width: 85%;
+  height: 500px;
+  justify-self: center;
+  padding: 20px;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px); 
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); 
+  padding-bottom: 10px;
+}
