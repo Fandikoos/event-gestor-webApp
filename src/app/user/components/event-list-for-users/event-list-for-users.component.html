@@ -1,29 +1,36 @@
 
 <section class="carousel">
-    <div class="carousel-wrapper">
-        <app-map [events]="events()"/>
+    <div class="map-wrapper">
+      <!--
+        <app-map [events]="events()"/>-->
     </div>
 </section>
 
 <section class="events container mt-4">
+
   <div class="row">
     <div class="col-12">
       <h2 class="text-center text-white">Events</h2>
     </div>
   </div>
-  <div class="row justify-content-between mt-3">
-    <div class="col-md-2 mb-3">
+
+  <div class="row justify-content-between alignt-items-center mt-4">
+
+    <div class="col-md-3 mb-3 text-center">
       <div class="form-group">
-        <label for="categoryFilter" class="text-white">All Categories</label>
-        <select id="categoryFilter" class="form-control">
-          <option value="all">All categories</option>
-          <option></option>
+        <label for="categoryFilter" class="text-white font-weight-bold" style="font-size: 1.25rem;">Filter By Category</label>
+        <select id="categoryFilter" class=" categoryFilter form-control shadow-lg mt-3" (change)="onCategoryChange($event)">
+          <option value="">All Categories</option>
+          @for (eventCategory of events(); track $index) {
+            <option [value]="eventCategory.category">{{eventCategory.category}}</option>
+          }
         </select>
       </div>
     </div>
-    <div class="col-md-10">
+
+    <div class="col-md-9">
       <div class="row">
-        @for (event of events(); track $index) {
+        @for (event of filteredEvents(); track $index) {
           <ng-container>
             <div class="col-md-6 col-lg-4 mb-4">
               <div class="card border-0 rounded-lg shadow-lg h-100" style="background-color: rgba(255, 255, 255, 0.1); backdrop-filter: blur(5px);">
@@ -52,7 +59,9 @@
 
       </div>
     </div>
+
   </div>
+
 </section>
 
 

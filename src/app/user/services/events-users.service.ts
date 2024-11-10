@@ -18,4 +18,8 @@ export class EventsUserService {
   getEventById(eventId: number):Observable<Event>{
     return this.http.get<Event>(`${this.url}/${eventId}`);
   }
+
+  getEventByCategory(category: string): Observable<Event[]>{
+    return this.http.get<Event[]>(`${this.url}/category/${category}`);
+  }
 }
