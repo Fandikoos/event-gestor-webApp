@@ -1,0 +1,51 @@
+@if (event()) {
+    <section class="map-wrapper">
+      <!--
+        <app-map [singleEvent]="event()"/>-->
+    </section>
+
+    <section class="container mt-5">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card border-0 shadow-lg h-100" style="background-color: rgba(255, 255, 255, 0.1); backdrop-filter: blur(5px);">
+              <img 
+                [src]="'data:image/jpeg;base64,' + event()?.eventImage" 
+                [alt]="event()?.name" 
+                class="card-img-top"
+                style="object-fit: cover; height: 100%; border-radius: 12px;"
+              >
+            </div>
+          </div>
+      
+          <div class="col-md-6 d-flex flex-column justify-content-between">
+            <div>
+              <h2 class="text-white font-weight-bold">{{ event()?.name }}</h2>
+              <p class="text-muted">{{ event()?.category }} | {{ event()?.date| date:'longDate' }}</p>
+      
+              <ul class="list-unstyled text-white mt-4">
+                <li><strong>Location:</strong> {{ event()?.address }}</li>
+                <li><strong>Description:</strong> {{ event()?.description }}</li>
+                <li><strong>Participants:</strong> {{ event()?.participants }}</li>
+                <li>
+                  <strong>Price:</strong>
+                  <span *ngIf="event()?.price; else paidPrice">Free</span>
+                  <ng-template #paidPrice>{{ event()?.price }} €</ng-template>
+                </li>
+              </ul>
+            </div>
+    
+            <div>
+                Ratings
+            </div>
+      
+            <div class="d-flex mt-4">
+              <button class="btn btn-primary flex-grow-1 mr-2" style="border-radius: 25px;">Register</button>
+            </div>
+          </div>
+        </div>
+    </section>
+}@else {
+    <p>Cargando información...</p>
+}
+
+  
