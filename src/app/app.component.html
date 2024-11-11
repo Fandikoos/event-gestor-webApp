@@ -8,18 +8,30 @@
           <li class="nav-item">
             <a routerLink="/events" class="nav-link text-white">Events</a>
           </li>
+          @if (!isAuthenticated()) {
+            <li class="nav-item">
+              <a mat-flat-button class="text-white" (click)="openLoginModal()">Login</a>
+            </li>
+          } @else {
+            <li class="nav-item">
+              <a class="nav-link text-white">Welcome, {{getUsername()}}</a>
+            </li>
+            <li class="nav-item">
+              <a mat-flat-button class="text-white" (click)="onLogout()">Logout</a>
+            </li>
+          }
         </ul>
       </nav>
     </div>
   </header>
 
-  <main class="flex-grow-1 w-100 py-4"> <!-- Ancho 100% -->
+  <main class="flex-grow-1 w-100 py-4"> 
     <div class="container">
       <router-outlet></router-outlet>
     </div>
   </main>
 
-  <footer class="w-100 bg-dark text-white py-4"> <!-- Ancho 100% -->
+  <footer class="w-100 bg-dark text-white py-4"> 
     <div class="container text-center">
       <p class="mb-0">&copy; 2024 Event Gestor. Todos los derechos reservados.</p>
     </div>
