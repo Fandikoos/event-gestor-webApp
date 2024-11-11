@@ -14,6 +14,15 @@ export interface Event {
     ratings:       Rating[];
 }
 
+export interface User {
+    id:            number;
+    name:          string;
+    email:         string;
+    phone:         string;
+    registrations: Registration[];
+    ratings:       Rating[];
+}
+
 export interface Rating {
     id:                number;
     organizationSpeed: number;
@@ -31,3 +40,5 @@ export interface Registration {
     userId:           number;
     registrationDate: null;
 }
+
+
