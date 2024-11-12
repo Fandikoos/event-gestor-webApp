@@ -19,7 +19,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './event-list-for-users.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EventListForUsersComponent implements OnInit{
+export class EventListForUsersComponent{
 
   private eventService = inject(EventsUserService);
 
@@ -44,11 +44,6 @@ export class EventListForUsersComponent implements OnInit{
     // Filtramos eventos segun la categoria seleccioanda
     return allEvents.filter(event => event.category === category);
   })
-
-
-  ngOnInit(): void {
-
-  }
 
   onCategoryChange(event: Event){
     const selectedElement = event.target as HTMLSelectElement;
