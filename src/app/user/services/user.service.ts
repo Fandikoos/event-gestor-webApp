@@ -19,4 +19,8 @@ export class UserService {
     return this.http.get<User>(`${this.url}/login?name=${name}&password=${password}`);
   }
 
+  getUserById(id: number): Observable<User>{
+    return this.http.get<User>(`${this.url}/users/searchUser?id=${id}`);
+  }
+
 }

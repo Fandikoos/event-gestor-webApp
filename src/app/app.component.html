@@ -19,7 +19,7 @@
             </li>
           } @else {
             <li class="nav-item">
-              <a [routerLink]="" class="nav-link text-white">My Events</a>
+              <a [routerLink]="['/myProfile', userId()]" class="nav-link text-white">My Events</a>
             </li>
             <li class="nav-item">
               <a mat-flat-button class="text-white" (click)="onLogout()">Logout</a>
