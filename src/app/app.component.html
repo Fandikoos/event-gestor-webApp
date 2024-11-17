@@ -11,7 +11,7 @@
             </li>
           }
           <li class="nav-item">
-            <a routerLink="/events" class="nav-link text-white">Events</a>
+            <a routerLink="" class="nav-link text-white">Events</a>
           </li>
           @if (!isAuthenticated()) {
             <li class="nav-item">
@@ -19,7 +19,7 @@
             </li>
           } @else {
             <li class="nav-item">
-              <a [routerLink]="['/myProfile', userId()]" class="nav-link text-white">My Events</a>
+              <a [routerLink]="['/myProfile', userId()]" class="nav-link text-white">Profile</a>
             </li>
             <li class="nav-item">
               <a mat-flat-button class="text-white" (click)="onLogout()">Logout</a>

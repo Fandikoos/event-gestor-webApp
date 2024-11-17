@@ -22,4 +22,9 @@ export class EventsUserService {
   getEventByCategory(category: string): Observable<Event[]>{
     return this.http.get<Event[]>(`${this.url}/category/${category}`);
   }
+
+  // Método para obtener eventos por una lista de IDs
+  getEventsByIds(eventIds: number[]): Observable<Event[]> {
+    return this.http.post<Event[]>(`${this.url}/multiple`, eventIds);
+  }
 }

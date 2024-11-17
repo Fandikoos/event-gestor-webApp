@@ -11,7 +11,7 @@ export const routes: Routes = [
     },
     {
         path: '**',
-        redirectTo: '/events',
+        redirectTo: 'events',
         pathMatch: 'full',
     }
 

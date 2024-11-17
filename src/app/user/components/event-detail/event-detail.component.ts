@@ -52,11 +52,6 @@ export class EventDetailComponent{
           this.errorMessageRegister.set(null)
           console.log('Succesfully registration');
         },
-        (error) => {
-          this.errorMessageRegister.set('An error occurred while registering. Please try again.');
-          this.successMessageRegister.set(null);
-          console.error('Error register user', error);
-        }
       )
     }
 

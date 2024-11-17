@@ -29,7 +29,9 @@ export class authService {
 
   // Cierra sesión y se elimina el token
   logout(): void{
-    localStorage.removeItem('user');
+    if(this.isLocalStorageAvailable()){
+      localStorage.removeItem('user');
+    }
   }
 
   getUser(): User{

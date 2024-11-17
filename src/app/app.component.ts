@@ -24,9 +24,10 @@ export class AppComponent {
   constructor(private dialog: MatDialog){
   }
 
+  /*
   ngOnInit(){
     this.authService.logout();
-  }
+  }*/
 
   openLoginModal(){
     this.dialog.open(LoginComponent)
