@@ -17,10 +17,11 @@ export interface Event {
 export interface User {
     id:            number;
     name:          string;
+    password?:      string
     email:         string;
     phone:         string;
-    registrations: Registration[];
-    ratings:       Rating[];
+    registrations?: Registration[];
+    ratings?:       Rating[];
 }
 
 export interface Rating {

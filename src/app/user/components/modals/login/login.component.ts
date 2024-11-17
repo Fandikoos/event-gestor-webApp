@@ -4,7 +4,8 @@ import { UserService } from '../../../services/user.service';
 import { FormsModule } from '@angular/forms';
 import { authService } from '../../../services/auth.service';
 import { DialogRef } from '@angular/cdk/dialog';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { RegisterUserComponent } from '../register-user/register-user.component';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +13,7 @@ import { MatDialogRef } from '@angular/material/dialog';
   imports: [
     CommonModule,
     FormsModule,
+    MatDialogModule,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
@@ -29,6 +31,7 @@ export class LoginComponent {
 
   constructor(
     private dialogRef: MatDialogRef<LoginComponent>, 
+    private dialog: MatDialog,
   ) {}
 
   onSubmit(){
@@ -56,6 +59,13 @@ export class LoginComponent {
     // Casting el evento para asegurarse de que tiene la propiedad 'value'
     const input = event.target as HTMLInputElement;
     this.password.set(input.value);
+  }
+
+  registerNewUser(){
+    this.dialog.open(RegisterUserComponent, {
+      width: '500px',
+      disableClose: false
+    });
   }
 
 

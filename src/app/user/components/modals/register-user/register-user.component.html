@@ -1,0 +1,96 @@
+<mat-dialog-content>
+    <form #registerForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
+
+      <div class="form-group">
+        <label for="name" class="text-black">Username</label>
+        <input 
+          type="text" 
+          id="name" 
+          class="form-control shadow-sm" 
+          placeholder="Ingresa tu nombre" 
+          name="name" 
+          [(ngModel)]="user.name" 
+          #name="ngModel" 
+          required
+        >
+        @if (name.invalid && name.touched) {
+            <div class="text-danger">
+                Name is required
+            </div>
+        }
+
+      </div>
+  
+      <div class="form-group mt-3">
+        <label for="email" class="text-black">Email</label>
+        <input 
+          type="email" 
+          id="email" 
+          class="form-control shadow-sm" 
+          placeholder="Ingresa tu email" 
+          name="email" 
+          [(ngModel)]="user.email" 
+          #email="ngModel" 
+          required
+          email
+        >
+        @if (email.invalid && email.touched) {
+            <div class="text-danger">
+                Email is required
+            </div>
+        }
+      </div>
+  
+      <div class="form-group mt-3">
+        <label for="password" class="text-black">Password</label>
+        <input 
+          type="password" 
+          id="password" 
+          class="form-control shadow-sm" 
+          placeholder="Ingresa tu contraseña" 
+          name="password" 
+          [(ngModel)]="user.password" 
+          #password="ngModel" 
+          required 
+          pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$"
+        >
+        @if (password.invalid && password.touched) {
+            <div class="text-danger">
+                The password must be at least 8 characters long, one upper case, one lower case and one number
+            </div>
+        }
+
+      </div>
+  
+      <div class="form-group mt-3">
+        <label for="phone" class="text-black">Phone</label>
+        <input 
+          type="text" 
+          id="phone" 
+          class="form-control shadow-sm" 
+          placeholder="Ingresa tu número de teléfono" 
+          name="phone" 
+          [(ngModel)]="user.phone" 
+          #phone="ngModel" 
+          required 
+        >
+        @if (phone.invalid && phone.touched) {
+            <div class="text-danger">
+                Phone is required
+            </div>
+        }
+
+      </div>
+  
+      <div class="form-group mt-4 text-center">
+        <button 
+          type="submit" 
+          class="btn btn-primary" 
+          [disabled]="registerForm.invalid"
+        >
+          Register
+        </button>
+      </div>
+    </form>
+</mat-dialog-content>
+  

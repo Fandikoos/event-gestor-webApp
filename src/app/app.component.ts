@@ -34,7 +34,9 @@ export class AppComponent {
   }
 
   onLogout(){
-    this.dialog.open(LogoutComponent);
+    this.dialog.open(LogoutComponent, {
+      height: '200px'
+    });
     //this.authService.logout();
   }
 
