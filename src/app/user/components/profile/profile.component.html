@@ -1,0 +1,45 @@
+<section class="container mt-5">
+  @if (user()) {
+
+    <div class="row text-center justify-content-around">
+      
+      <div class="col-md-5 p-4 bg-light rounded shadow-sm">
+        <h3 class="text-primary font-weight-bold">User Information</h3>
+        <ul class="list-unstyled mt-4 text-black">
+          <li><strong>Nombre:</strong> {{ user()?.name }}</li>
+          <li><strong>Email:</strong> {{ user()?.email }}</li>
+          <li><strong>Teléfono:</strong> {{ user()?.phone }}</li>
+        </ul>
+        <div class="social-icons mt-4">
+          <h5 class="text-secondary">Social Media</h5>
+          <a href="" class="text-dark mx-2"><i class="fab fa-facebook fa-2x"></i></a>
+          <a href="" class="text-dark mx-2"><i class="fab fa-twitter fa-2x"></i></a>
+          <a href="" class="text-dark mx-2"><i class="fab fa-instagram fa-2x"></i></a>
+        </div>
+      </div>
+  
+
+      <div class="col-md-5 p-4 bg-light rounded shadow-sm">
+        <h3 class="text-primary font-weight-bold">My Events</h3>
+        @if (userEventsId.length > 0) {
+          <ul class="list-group mt-4">
+            @for (event of eventByIdSignal(); track $index) {
+              <li class="list-group-item d-flex justify-content-between align-items-center text-black">
+                <div class="text-left">
+                  <strong>{{ event.name }}</strong>
+                  <p class="text-muted">{{ event.date| date: 'longDate' }}</p>
+                  <small>{{ event.address }}</small>
+                </div>
+                <button class="btn btn-outline-primary btn-sm">Ver</button>
+              </li>
+            }
+          </ul>
+        }
+      </div>
+
+
+    </div>
+
+  }  
+
+</section>

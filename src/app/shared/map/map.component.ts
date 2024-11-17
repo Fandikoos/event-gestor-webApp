@@ -62,8 +62,8 @@ export class MapComponent implements OnInit{
           <h5 class="mb-0">${location.name}</h5>
         </div>
         <div class="card-body text-center">
-          <p class="card-text mb-2">📅 <strong>${location.date}</strong></p>
-          <p class="card-text mb-3">📍 <strong>${location.address}</strong></p>
+          <p class="card-text mb-2 "><i class="fa-solid fa-calendar-days me-2"></i><strong>${location.date}</strong></p>
+          <p class="card-text mb-3"><i class="fa-solid fa-map-pin me-2"></i><strong>${location.address}</strong></p>
           <button class="btn btn-primary w-100" style="background-color: #ff512f; border-color: #ff512f; border-radius: 30px; transition: background-color 0.3s ease;"
             onmouseover="this.style.backgroundColor='#e04c26'"
             onmouseout="this.style.backgroundColor='#ff512f'"

@@ -1,0 +1,16 @@
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.btn-primary {
+  padding: 0.5rem 1.5rem;
+  font-size: 1.1rem;
+}
+
+.text-black {
+  font-weight: 600;
+}
+
+.text-danger {
+  font-size: 0.9rem;
+}

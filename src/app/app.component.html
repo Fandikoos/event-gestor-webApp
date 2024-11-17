@@ -1,12 +1,17 @@
 <div class="min-vh-100 d-flex flex-column">
   <header class="w-100 bg-dark text-white py-4 shadow"> <!-- Ancho 100% -->
     <div class="container d-flex justify-content-between align-items-center">
-      <h1 class="h3 fw-bold">Event Gestor</h1>
+      <h1 class="h3 fw-bold">Eventify</h1>
   
       <nav>
         <ul class="nav">
+          @if (isAuthenticated()) {
+            <li class="nav-item">
+              <a class="nav-link text-white">Welcome, {{getUsername()}}</a>
+            </li>
+          }
           <li class="nav-item">
-            <a routerLink="/events" class="nav-link text-white">Events</a>
+            <a routerLink="" class="nav-link text-white">Events</a>
           </li>
           @if (!isAuthenticated()) {
             <li class="nav-item">
@@ -14,7 +19,7 @@
             </li>
           } @else {
             <li class="nav-item">
-              <a class="nav-link text-white">Welcome, {{getUsername()}}</a>
+              <a [routerLink]="['/myProfile', userId()]" class="nav-link text-white">Profile</a>
             </li>
             <li class="nav-item">
               <a mat-flat-button class="text-white" (click)="onLogout()">Logout</a>
@@ -33,7 +38,7 @@
 
   <footer class="w-100 bg-dark text-white py-4"> 
     <div class="container text-center">
-      <p class="mb-0">&copy; 2024 Event Gestor. Todos los derechos reservados.</p>
+      <p class="mb-0">&copy; 2024 Eventify. All rights reserved.</p>
     </div>
   </footer>
 </div>
