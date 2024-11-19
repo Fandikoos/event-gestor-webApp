@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Registration } from '../model/interfaces';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
@@ -10,14 +11,13 @@ import { Observable } from 'rxjs';
 export class RegistrationService {
 
   private http = inject(HttpClient);
-  private url = 'http://localhost:8095/registrations';
 
   postRegistration(eventId: number, userId: number): Observable<Registration>{
     const body = { eventId, userId };
-    return this.http.post<Registration>(this.url, body);
+    return this.http.post<Registration>(environment.apiUrlRegistrations, body);
   }
 
   getAllRegistrationsByUserId(userId: number){
-    return this.http.get<Registration[]>(`${this.url}/user/${userId}`);
+    return this.http.get<Registration[]>(`${environment.apiUrlRegistrations}/user/${userId}`);
   }
 }
