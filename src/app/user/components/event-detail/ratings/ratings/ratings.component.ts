@@ -20,13 +20,36 @@ export class RatingsComponent implements OnInit{
   ngOnInit(): void{
     this.calculateAverageRating();
   }
+  
+
 
   calculateAverageRating(){
-    const totalRatings = this.ratingsEvent().length;
-    const sumAllRatings = this.ratingsEvent().reduce((sum, rating) => 
-      sum + rating .averageRating, 0 
+      const totalRatings = this.ratingsEvent().length;
+      console.log(totalRatings);
+      const sumAllRatings = this.ratingsEvent().reduce((sum, rating) => 
+      sum + rating.averageRating, 0 
     );
 
     this.averageRating.update(value => sumAllRatings/totalRatings);
+    
+  }
+
+  getRatingStars(rating: number){
+    const stars: string[] = [];
+
+    for (let i = 1; i <= 5; i++) {
+      const starFill = rating - i + 1;
+
+      if(starFill >= 1){
+        stars.push('full'); //Estrella completa
+      } else if(starFill >= 0.5){
+        stars.push('half');  //Media estrella
+      } else {
+        stars.push('empty');  //Estrella vacía
+      }
+      
+    }
+
+    return stars;
   }
 }

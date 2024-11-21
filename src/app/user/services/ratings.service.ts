@@ -1,5 +1,8 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
+import { Rating } from '../model/interfaces';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,9 +10,10 @@ import { environment } from '../../../environments/environment.development';
 export class RatingsService {
 
   private url = environment.apiUrlRatings;
+  private http = inject(HttpClient);
 
-  getRatingsOfEvent(){
-    
+  postRating(rating: Rating){
+    return this.http.post(environment.apiUrlRatings, rating);
   }
 
 }

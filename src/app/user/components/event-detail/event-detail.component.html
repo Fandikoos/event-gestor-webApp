@@ -6,66 +6,117 @@
     </section>
 
     <section class="container mt-5">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="card border-0 shadow-lg h-100" style="background-color: rgba(255, 255, 255, 0.1); backdrop-filter: blur(5px);">
-              <img 
-                [src]="'data:image/jpeg;base64,' + event()?.eventImage" 
-                [alt]="event()?.name" 
-                class="card-img-top"
-                style="object-fit: cover; height: 100%; border-radius: 12px;"
-              >
-            </div>
-          </div>
-      
-          <div class="col-md-6 d-flex flex-column justify-content-between">
-            <div>
-              <h2 class="text-white font-weight-bold">{{ event()?.name }}</h2>
-              <p class="text-muted">{{ event()?.category }} | {{ event()?.date| date:'longDate' }}</p>
-      
-              <ul class="list-unstyled text-white mt-4">
-                <li><strong>Location:</strong> {{ event()?.address }}</li>
-                <li><strong>Description:</strong> {{ event()?.description }}</li>
-                <li><strong>Participants:</strong> {{ event()?.participants }}</li>
-                <li>
-                  <strong>Price:</strong>
-                  <span *ngIf="event()?.price; else paidPrice">Free</span>
-                  <ng-template #paidPrice>{{ event()?.price }} €</ng-template>
-                </li>
-              </ul>
-            </div>
-    
-            <div>
-                <app-ratings [ratingsEvent]="event()!.ratings" />
-            </div>
-      
-            <div class="d-flex mt-4">
-              @if (event()?.participants !== 0) {
-                <button class="btn btn-primary flex-grow-1 mr-2" style="border-radius: 25px;" (click)="onRegister()">
-                  {{isRegistered() ? 'You are already registered' : 'Register'}}
-                </button>
-              } @else {
-                <div class="alert alert-danger mt-4">
-                  This event is completly full of people
-                </div>
-              }
-              
-            </div>
-
-            @if (successMessageRegister()) {
-              <div  class="alert alert-success mt-4">
-                {{ successMessageRegister() }}
-              </div>
-            }
-            @if (errorMessageRegister()) {
-              <div class="alert alert-danger mt-4">
-                {{ errorMessageRegister() }}
-              </div>
-            }
-            @if (successMessageRegister() === null && errorMessageRegister() === null) {
-            }
+      <div class="row align-items-center">
+        <!-- Imagen del evento -->
+        <div class="col-md-6 mb-4 mb-md-0">
+          <div class="card border-0 shadow-lg h-100 overflow-hidden" style="background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(12px); border-radius: 20px;">
+            <img 
+              [src]="'data:image/jpeg;base64,' + event()?.eventImage" 
+              [alt]="event()?.name" 
+              class="img-fluid w-100 h-100" 
+              style="object-fit: cover; border-radius: 20px;"
+            >
           </div>
         </div>
+    
+        <!-- Detalles del evento -->
+        <div class="col-md-6 d-flex flex-column justify-content-center text-white text-center">
+          <div class="card bg-transparent border-0">
+            <div class="card-body p-0">
+              <h1 class="display-5 font-weight-bold">{{ event()?.name }}</h1>
+              <p class="text-info">{{ event()?.category }} | {{ event()?.date | date:'longDate' }}</p>
+              
+              <ul class="list-unstyled mt-4">
+                <li><i class="fa-solid fa-map-pin me-2"></i> {{ event()?.address }}</li>
+                <li> {{ event()?.description }}</li>
+                <li><i class="fa-solid fa-person me-2"></i> {{ event()?.participants }}</li>
+                <li>
+                  <i class="fa-solid fa-coins me-2"></i>
+                  <span *ngIf="event()?.price; else paidPrice" class="badge bg-success">Free</span>
+                  <ng-template #paidPrice><span class="badge bg-primary">{{ event()?.price }} €</span></ng-template>
+                </li>
+              </ul>
+    
+              <!-- Sistema de ratings -->
+              <div class="mt-4 d-flex justify-content-center align-items-center">
+                <app-ratings [ratingsEvent]="event()!.ratings"></app-ratings>
+              </div>
+    
+              <!-- Botón de registro -->
+              <div class="d-flex mt-4">
+                @if (event()?.participants !== 0) {
+                  <button class="btn btn-outline-light flex-grow-1" style="border-radius: 25px;" (click)="onRegister()">
+                    {{ isRegistered() ? 'You are already registered' : 'Register' }}
+                  </button>
+                } @else {
+                  <div class="alert alert-danger mt-4">
+                    This event is fully booked
+                  </div>
+                }
+                <button class="btn btn-outline-dark flex-grow-1" style="border-radius: 25px;" data-bs-toggle="modal" data-bs-target="#ratingModal">
+                  Rate
+                </button>
+              </div>
+
+              <!--Parate del rating-->
+              <div class="modal fade" id="ratingModal" tabindex="-1" aria-labelledby="ratingModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content" style="border-radius: 20px; background: rgba(255, 255, 255, 0.95);">
+                    <div class="modal-header border-0">
+                      <h5 class="modal-title" id="ratingModalLabel">Rate the Event</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+              
+                    <div class="modal-body">
+                      <form [formGroup]="ratingForm">
+                        <div class="mb-3">
+                          <label for="customerService" class="form-label">Customer Service</label>
+                          <input type="range" class="form-range" id="customerService" formControlName="customerService" min="1" max="5" step="1">
+                          <span class="text-muted">Rate: {{ ratingForm.get('customerService')?.value }}</span>
+                        </div>
+                        <div class="mb-3">
+                          <label for="eventQuality" class="form-label">Event Quality</label>
+                          <input type="range" class="form-range" id="eventQuality" formControlName="eventQuality" min="1" max="5" step="1">
+                          <span class="text-muted">Rate: {{ ratingForm.get('eventQuality')?.value }}</span>
+                        </div>
+                        <div class="mb-3">
+                          <label for="organizationSpeed" class="form-label">Organization Speed</label>
+                          <input type="range" class="form-range" id="organizationSpeed" formControlName="organizationSpeed" min="1" max="5" step="1">
+                          <span class="text-muted">Rate: {{ ratingForm.get('organizationSpeed')?.value }}</span>
+                        </div>
+                        <div class="mb-3">
+                          <label for="valueForMoney" class="form-label">Value for Money</label>
+                          <input type="range" class="form-range" id="valueForMoney" formControlName="valueForMoney" min="1" max="5" step="1">
+                          <span class="text-muted">Rate: {{ ratingForm.get('valueForMoney')?.value }}</span>
+                        </div>
+                      </form>
+                    </div>
+              
+                    <div class="modal-footer border-0 d-flex justify-content-center">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                      <button type="button" class="btn btn-primary" (click)="submitRating()" data-bs-dismiss="modal">Submit Rating</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+    
+              <!-- Mensajes de éxito o error -->
+              <div class="mt-3">
+                @if (successMessageRegister()) {
+                  <div class="alert alert-success">
+                    {{ successMessageRegister() }}
+                  </div>
+                }
+                @if (errorMessageRegister()) {
+                  <div class="alert alert-danger">
+                    {{ errorMessageRegister() }}
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section class="carousel-wrapper mt-5 d-flex">

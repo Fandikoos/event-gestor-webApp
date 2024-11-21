@@ -1,8 +1,19 @@
 @if (ratingsEvent().length == 0) {
     <p>There are not many opinions yet, make your own to improve this service :D</p>
 }@else {
-    <div>
-        hola
+    <div class="d-flex align-items-center">
+        <div>
+            @for (star of getRatingStars(averageRating()); track $index) {
+                <i class="fa-solid text-warning" [ngClass]="{
+                  'fa-star': star === 'full',
+                  'fa-star-half-stroke': star === 'half',
+                  'fa-star-o': star === 'empty'
+                }"></i>
+            }
+        </div>
+        <span class="ms-4">{{ averageRating() }}</span>/5
     </div>
+
+
 }
 
