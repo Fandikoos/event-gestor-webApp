@@ -3,5 +3,6 @@ export const environment = {
     apiUrlUsers: 'http://localhost:8095/users',
     apiUrlRegistrations: 'http://localhost:8095/registrations',
     mapsApiKey: 'AIzaSyBlgVGic7SHs-b5oIzSsVYt1C5NNcjQdEg',
+    apiUrlRatings: 'http://localhost:8095/ratings',
     production: true
 };

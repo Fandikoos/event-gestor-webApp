@@ -1,5 +1,6 @@
 @if (event()) {
     <section class="map-wrapper">
+
       <!--
         <app-map [singleEvent]="event()"/>-->
     </section>
@@ -35,11 +36,13 @@
             </div>
     
             <div>
-                Ratings
+                <app-ratings [ratingsEvent]="event()!.ratings" />
             </div>
       
             <div class="d-flex mt-4">
-              <button class="btn btn-primary flex-grow-1 mr-2" style="border-radius: 25px;" (click)="onRegister()">Register</button>
+              <button class="btn btn-primary flex-grow-1 mr-2" style="border-radius: 25px;" (click)="onRegister()">
+                {{isRegistered() ? 'You are already registered' : 'Register'}}
+              </button>
             </div>
 
             @if (successMessageRegister()) {
@@ -56,6 +59,15 @@
             }
           </div>
         </div>
+    </section>
+
+    <section class="carousel-wrapper mt-5 d-flex">
+      <div>
+      </div>
+
+      <div>
+        Carrusel de fotos
+      </div>
     </section>
 }@else {
     <p>Cargando información...</p>
