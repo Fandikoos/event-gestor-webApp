@@ -25,4 +25,12 @@ export class RegistrationService {
   checkUserInEvent(eventId: number, userId: number): Observable<boolean>{
     return this.http.get<boolean>(`${environment.apiUrlRegistrations}/check?eventId=${eventId}&userId=${userId}`);
   }
+
+  deleteRegistrationByUser(registrationId: number){
+    return this.http.delete(`${environment.apiUrlRegistrations}/${registrationId}`);
+  }
+
+  getAllRegistrations(): Observable<Registration>{
+    return this.http.get<Registration>(`${environment.apiUrlRegistrations}`)
+  }
 }
