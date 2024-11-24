@@ -5,6 +5,10 @@
         <app-map [singleEvent]="event()"/>-->
     </section>
 
+    <div class="text-center mt-5">
+      <h2>EVENT INFORMATION</h2>
+    </div>  
+
     <section class="container mt-5">
       <div class="row align-items-center">
         <!-- Imagen del evento -->
@@ -45,7 +49,7 @@
               <!-- Botón de registro -->
               <div class="d-flex mt-4">
                 @if (event()?.participants !== 0) {
-                  <button class="btn btn-outline-light flex-grow-1" style="border-radius: 25px;" (click)="onRegister()">
+                  <button class="btn btn-outline-light flex-grow-1" style="border-radius: 25px; margin-right: 20px;" (click)="onRegister()">
                     {{ isRegistered() ? 'You are already registered' : 'Register' }}
                   </button>
                 } @else {
@@ -78,13 +82,12 @@
       </div>
     </section>
 
-    <section class="carousel-wrapper mt-5 d-flex">
-      <div>
-      </div>
+    <div class="text-center mt-5">
+      <h2>EVENTS GALLERY</h2>
+    </div>
 
-      <div>
-        Carrusel de fotos
-      </div>
+    <section class="carousel-wrapper mt-5">
+      <app-carousel />
     </section>
 }@else {
     <p>Cargando información...</p>

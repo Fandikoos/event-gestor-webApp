@@ -9,6 +9,8 @@ import { switchMap } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { EventsUserService } from '../../../services/events-users.service';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatSliderModule } from '@angular/material/slider';
+
 
 @Component({
   selector: 'app-post-rate',
@@ -17,6 +19,7 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef } from '@angu
     CommonModule,
     ReactiveFormsModule,
     MatDialogModule,
+    MatSliderModule,
   ],
   templateUrl: './postRate.component.html',
   styleUrl: './postRate.component.css',
@@ -32,7 +35,7 @@ export class PostRateComponent {
 
   eventId: any;
 
-  constructor(private fb:FormBuilder, private dialogRef: MatDialogRef<PostRateComponent>, 
+  constructor(private fb:FormBuilder, public dialogRef: MatDialogRef<PostRateComponent>, 
     private dialog: MatDialog, @Optional() @Inject(MAT_DIALOG_DATA) public data: any){
 
     this.ratingForm = this.fb.group({
@@ -90,6 +93,7 @@ export class PostRateComponent {
   submitRating() {
     if (this.ratingForm.valid) {
       this.postRate();
+      this.dialogRef.close();
     } else {
       // Manejar formulario inválido
       console.log('Formulario no válido');

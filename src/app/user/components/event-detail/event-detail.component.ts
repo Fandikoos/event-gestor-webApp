@@ -103,7 +103,7 @@ export class EventDetailComponent{
 
   openDialog(eventId: number){
     this.dialog.open(PostRateComponent, {
-      height : '85%',
+      height : '70%',
       width: '85%',
       data: {
         eventId: eventId,

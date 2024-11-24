@@ -25,7 +25,6 @@ export class RatingsComponent implements OnInit{
 
   calculateAverageRating(){
       const totalRatings = this.ratingsEvent().length;
-      console.log(totalRatings);
       const sumAllRatings = this.ratingsEvent().reduce((sum, rating) => 
       sum + rating.averageRating, 0 
     );
