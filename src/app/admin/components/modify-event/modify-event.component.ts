@@ -18,7 +18,9 @@ export class ModifyEventComponent implements OnInit {
     id: 0,
     name: '',
     date: '',
-    place: '',
+    address: '',
+    lat: 0,
+    lng: 0,
     description: '',
     category: '',
     participants: 0,
@@ -54,7 +56,9 @@ export class ModifyEventComponent implements OnInit {
     const formData = new FormData();
     formData.append('name', this.event.name);
     formData.append('date', this.event.date);
-    formData.append('place', this.event.place);
+    formData.append('address', this.event.address);
+    formData.append('lat', this.event.lat.toString());
+    formData.append('lng', this.event.lng.toString());
     formData.append('description', this.event.description);
     formData.append('category', this.event.category);
     formData.append('participants', this.event.participants.toString());
@@ -67,7 +71,7 @@ export class ModifyEventComponent implements OnInit {
     this.eventService.modifyEvent(this.event.id, formData).subscribe({
       next: (response) => {
         console.log('Evento modificado con éxito:', response);
-        this.router.navigate(['events']);
+        this.router.navigate(['admin']);
       },
       error: (err) => {
         console.error('Error al modificar el evento', err);

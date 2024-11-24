@@ -18,12 +18,15 @@ export class AddEventComponent {
     id: 0,
     name: '',
     date: '',
-    place: '',
+    address: '',
+    lat: 0,
+    lng: 0,
     description: '',
     category: '',
     participants: 0,
     price: '',
-    eventImage: null
+    eventImage: null,
+
   };
 
   private eventApiService = inject(EventsService);
@@ -50,7 +53,9 @@ export class AddEventComponent {
     // Agregar cada campo del formulario a FormData
     formData.append('name', this.newEvent.name);
     formData.append('date', this.newEvent.date);
-    formData.append('place', this.newEvent.place);
+    formData.append('address', this.newEvent.address);
+    formData.append('lat', this.newEvent.lat.toString()),
+    formData.append('lng', this.newEvent.lng.toString()),
     formData.append('description', this.newEvent.description);
     formData.append('category', this.newEvent.category);
     formData.append('participants', this.newEvent.participants.toString());
@@ -64,7 +69,7 @@ export class AddEventComponent {
     this.eventApiService.addEvent(formData).subscribe({
       next: (response: eventModel) => {
         console.log('Event added successfully', response);
-        this.router.navigate(['events']);
+        this.router.navigate(['admin']);
       },
       error: (err) => {
         console.error('Error adding the events', err);
