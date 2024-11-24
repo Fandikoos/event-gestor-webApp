@@ -1,0 +1,74 @@
+<div class="modal-header text-center">
+    <h2 class="modal-title w-100" style="color: #333;">Rate the Event</h2>
+    <button type="button" class="btn-close" aria-label="Close" (click)="dialogRef.close()"></button>
+  </div>
+  
+  <div class="modal-body p-4">
+    <form [formGroup]="ratingForm" class="d-flex flex-column align-items-center">
+      <!-- Customer Service -->
+      <div class="mb-4 w-100">
+        <label for="customerService" class="form-label text-black"><i class="fa-solid fa-bell-concierge me-3"></i>Customer Service</label>
+        <input 
+          type="range" 
+          class="form-range" 
+          min="1" 
+          max="5" 
+          step="1" 
+          formControlName="customerService" 
+          id="customerService">
+        <span class="d-block text-muted text-center">Rate: {{ ratingForm.get('customerService')?.value }}</span>
+      </div>
+  
+      <!-- Event Quality -->
+      <div class="mb-4 w-100">
+        <label for="eventQuality" class="form-label text-black"><i class="fa-solid fa-wand-magic-sparkles me-3"></i>Event Quality</label>
+        <input 
+          type="range" 
+          class="form-range" 
+          min="1" 
+          max="5" 
+          step="1" 
+          formControlName="eventQuality" 
+          id="eventQuality">
+        <span class="d-block text-muted text-center">Rate: {{ ratingForm.get('eventQuality')?.value }}</span>
+      </div>
+  
+      <!-- Organization Speed -->
+      <div class="mb-4 w-100">
+        <label for="organizationSpeed" class="form-label text-black"><i class="fa-solid fa-gauge me-3"></i>Organization Speed</label>
+        <input 
+          type="range" 
+          class="form-range" 
+          min="1" 
+          max="5" 
+          step="1" 
+          formControlName="organizationSpeed" 
+          id="organizationSpeed">
+        <span class="d-block text-muted text-center">Rate: {{ ratingForm.get('organizationSpeed')?.value }}</span>
+      </div>
+  
+      <!-- Value for Money -->
+      <div class="mb-4 w-100">
+        <label for="valueForMoney" class="form-label text-black"><i class="fa-solid fa-money-bill me-3"></i>Value for Money</label>
+        <input 
+          type="range" 
+          class="form-range" 
+          min="1" 
+          max="5" 
+          step="1" 
+          formControlName="valueForMoney" 
+          id="valueForMoney">
+        <span class="d-block text-muted text-center">Rate: {{ ratingForm.get('valueForMoney')?.value }}</span>
+      </div>
+    </form>
+  </div>
+  
+  <div class="modal-footer d-flex justify-content-center mt-4 mb-4">
+    <button type="button" class="btn btn-secondary" (click)="dialogRef.close()" style="border-radius: 25px;">
+      Cancel
+    </button>
+    <button type="button" class="btn btn-primary ms-2" (click)="submitRating()" style="border-radius: 25px;">
+      Submit Rating
+    </button>
+  </div>
+  

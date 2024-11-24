@@ -25,7 +25,7 @@ export interface User {
 }
 
 export interface Rating {
-    id:                number;
+    id?:                number;
     organizationSpeed: number;
     eventQuality:      number;
     customerService:   number;

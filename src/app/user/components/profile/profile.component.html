@@ -30,7 +30,7 @@
                   <p class="text-muted">{{ event.date| date: 'longDate' }}</p>
                   <small>{{ event.address }}</small>
                 </div>
-                <button class="btn btn-outline-primary btn-sm">Ver</button>
+                <button class="btn btn-outline-primary btn-sm" (click)="cancelRegistration(registrationsByUser[$index].id)">Cancel</button>
               </li>
             }
           </ul>

@@ -4,6 +4,7 @@ import { inject, Injectable } from '@angular/core';
 import { Registration } from '../model/interfaces';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
+import { env } from 'node:process';
 
 @Injectable({
   providedIn: 'root'
@@ -19,5 +20,17 @@ export class RegistrationService {
 
   getAllRegistrationsByUserId(userId: number){
     return this.http.get<Registration[]>(`${environment.apiUrlRegistrations}/user/${userId}`);
+  }
+
+  checkUserInEvent(eventId: number, userId: number): Observable<boolean>{
+    return this.http.get<boolean>(`${environment.apiUrlRegistrations}/check?eventId=${eventId}&userId=${userId}`);
+  }
+
+  deleteRegistrationByUser(registrationId: number){
+    return this.http.delete(`${environment.apiUrlRegistrations}/${registrationId}`);
+  }
+
+  getAllRegistrations(): Observable<Registration>{
+    return this.http.get<Registration>(`${environment.apiUrlRegistrations}`)
   }
 }
