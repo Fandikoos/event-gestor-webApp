@@ -1,6 +1,6 @@
 .map-wrapper {
   width: 85%;
-  height: 500px;
+  height: 400px;
   justify-self: center;
   padding: 20px;
   box-sizing: border-box;
@@ -9,4 +9,29 @@
   border-radius: 10px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); 
   padding-bottom: 10px;
+}
+
+.carousel-wrapper {
+  width: 85%;
+  height: 600px;
+  justify-self: center;
+  padding: 20px;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px); 
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); 
+  padding-bottom: 10px;
+}
+
+.modal-content {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.form-range {
+  accent-color: #007bff;
+}
+
+.form-label {
+  font-weight: bold;
 }

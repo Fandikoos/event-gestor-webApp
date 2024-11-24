@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, Signal, signal, WritableSignal } from '@angular/core';
+import { afterNextRender, ChangeDetectionStrategy, ChangeDetectorRef, Component, computed, inject, Signal, signal, WritableSignal } from '@angular/core';
 import { authService } from '../../services/auth.service';
 import { Event, Registration, User } from '../../model/interfaces';
 import { EventsUserService } from '../../services/events-users.service';
@@ -29,21 +29,36 @@ export class ProfileComponent {
   eventsById: Event[] = [];
   eventByIdSignal = signal<Event[]>([]);
 
+  registrationsByUser: Registration[] = [];
+
   constructor(){
-    const userInfo = this.authService.getUser();
-    this.user.set(userInfo);
-    console.log(userInfo.id);
+    afterNextRender(() => {
+      const userInfo = this.authService.getUser();
+      this.user.set(userInfo);
+  
+      this.registrationService.getAllRegistrationsByUserId(userInfo.id).subscribe((response) => {
+        console.log(response);
+        this.registrationsByUser = response;
+  
+        this.userEventsId = response.map(registration => registration.eventId); 
+        
+        this.eventService.getEventsByIds(this.userEventsId).subscribe((events) => {
+          this.eventsById = events;
+          this.eventByIdSignal.set(this.eventsById);
+        })
+      });
+    })
 
-    this.registrationService.getAllRegistrationsByUserId(userInfo.id).subscribe((response) => {
-      this.userEventsId = response.map(registration => registration.eventId); 
-      console.log(this.userEventsId);
-      
-      this.eventService.getEventsByIds(this.userEventsId).subscribe((events) => {
-        this.eventsById = events;
-        console.log(this.eventsById);
-        this.eventByIdSignal.set(this.eventsById);
+  }
+
+  cancelRegistration(registrationId: number){
+      this.registrationService.deleteRegistrationByUser(registrationId).subscribe(() => {
+        this.registrationsByUser = this.registrationsByUser.filter(registration => registration.id !== registrationId);
+
+        this.userEventsId = this.registrationsByUser.map(registration => registration.eventId);
+        this.eventService.getEventsByIds(this.userEventsId).subscribe((events) => {
+          this.eventByIdSignal.set(events);
+        });
       })
-    });
-
   }
 }

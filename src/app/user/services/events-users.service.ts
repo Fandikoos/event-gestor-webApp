@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { map, Observable, take } from 'rxjs';
 import { Event } from '../model/interfaces';
+import { environment } from '../../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
@@ -9,22 +10,21 @@ import { Event } from '../model/interfaces';
 export class EventsUserService {
 
   private http = inject(HttpClient);
-  private url = 'http://localhost:8095/events';
 
   getAllEvents(): Observable<Event[]>{
-    return this.http.get<Event[]>(this.url)
+    return this.http.get<Event[]>(environment.apiUrlEvents)
   }
 
   getEventById(eventId: number):Observable<Event>{
-    return this.http.get<Event>(`${this.url}/${eventId}`);
+    return this.http.get<Event>(`${environment.apiUrlEvents}/${eventId}`);
   }
 
   getEventByCategory(category: string): Observable<Event[]>{
-    return this.http.get<Event[]>(`${this.url}/category/${category}`);
+    return this.http.get<Event[]>(`${environment.apiUrlEvents}/category/${category}`);
   }
 
   // Método para obtener eventos por una lista de IDs
   getEventsByIds(eventIds: number[]): Observable<Event[]> {
-    return this.http.post<Event[]>(`${this.url}/multiple`, eventIds);
+    return this.http.post<Event[]>(`${environment.apiUrlEvents}/multiple`, eventIds);
   }
 }

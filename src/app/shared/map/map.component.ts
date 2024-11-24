@@ -24,6 +24,7 @@ export class MapComponent implements OnInit{
   
   center = signal<google.maps.LatLngLiteral>({lat:0, lng: 0});
   zoom = signal<number>(0);
+  mapTypeId: string = '';
 
   events = input<Event[]>();
   singleEvent = input<Event>();
@@ -35,22 +36,27 @@ export class MapComponent implements OnInit{
         lng: this.singleEvent()?.lng || 0,
       }),
       this.zoom.set(17);
+      this.mapTypeId = 'roadmap';
+      
     } else {
       this.center.set({
-        lat: 40.415347,
-        lng: -3.707371,
+        lat: 39.99419415938477,
+        lng: -3.8901003596418477,
       })
       this.zoom.set(6);
+      this.mapTypeId = 'hybrid';
     }
     
     this.options = {
       center: this.center(),
       zoom: this.zoom(),
-      mapId: '7ce303fcc384310c'
+      mapId: '7ce303fcc384310c',
+      mapTypeId: this.mapTypeId,
     } 
     this.markerOptions = {
       gmpDraggable: false,
       gmpClickable: true,
+      
     }
 
   }

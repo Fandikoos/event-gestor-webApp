@@ -7,6 +7,8 @@ import { LoginComponent } from './user/components/modals/login/login.component';
 import { authService } from './user/services/auth.service';
 import { LogoutComponent } from './user/components/modals/logout/logout.component';
 import { UserService } from './user/services/user.service';
+import { AdminComponent } from './user/components/modals/admin/admin.component';
+import { AdminAuthService } from './user/services/admin-auth.service';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +21,7 @@ export class AppComponent {
   title = 'event-gestor-webApp';
 
   private authService = inject(authService);
+  private authAdminService = inject(AdminAuthService);
   userId = signal<number>(0);
 
   constructor(private dialog: MatDialog){
@@ -31,6 +34,10 @@ export class AppComponent {
 
   openLoginModal(){
     this.dialog.open(LoginComponent)
+  }
+
+  openAdminLoginModal(){
+    this.dialog.open(AdminComponent)
   }
 
   onLogout(){
@@ -53,4 +60,14 @@ export class AppComponent {
     const userId = this.authService.getUser().id;
     this.userId.set(userId);
   }
+
+  isAdminAuth(){
+    return this.authAdminService.isAdminAuth();
+  }
+
+  getAdminName(): string{
+    const admin = this.authAdminService.getUser();
+    return admin.name ? admin.name: '';
+  }
+
 }

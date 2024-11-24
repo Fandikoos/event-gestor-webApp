@@ -25,7 +25,7 @@ export interface User {
 }
 
 export interface Rating {
-    id:                number;
+    id?:                number;
     organizationSpeed: number;
     eventQuality:      number;
     customerService:   number;
@@ -40,6 +40,14 @@ export interface Registration {
     eventId:          number;
     userId:           number;
     registrationDate: null;
+}
+
+export interface Admin {
+    id:            number;
+    name:          string;
+    password?:      string
+    email:         string;
+    phone:         string;
 }
 
 

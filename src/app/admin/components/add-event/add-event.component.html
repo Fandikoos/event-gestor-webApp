@@ -20,8 +20,18 @@
 
     <!-- Lugar del Evento -->
     <div class="form-group">
-      <label for="place" class="form-label text-white">Place</label>
-      <input id="place" type="text" [(ngModel)]="newEvent.place" name="place" class="form-control mb-2" required>
+      <label for="address" class="form-label text-white">Address</label>
+      <input id="address" type="text" [(ngModel)]="newEvent.address" name="address" class="form-control mb-2" required>
+    </div>
+
+    <div class="form-group">
+      <label for="lat" class="form-label text-white">Latitud</label>
+      <input id="lat" type="number" [(ngModel)]="newEvent.lat" name="lat" class="form-control mb-2">
+    </div>
+
+    <div class="form-group">
+      <label for="lng" class="form-label text-white">Longitud</label>
+      <input id="lng" type="number" [(ngModel)]="newEvent.lng" name="lng" class="form-control mb-2">
     </div>
 
     <!-- Descripción del Evento -->
