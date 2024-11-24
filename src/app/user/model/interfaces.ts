@@ -42,4 +42,12 @@ export interface Registration {
     registrationDate: null;
 }
 
+export interface Admin {
+    id:            number;
+    name:          string;
+    password?:      string
+    email:         string;
+    phone:         string;
+}
+
 

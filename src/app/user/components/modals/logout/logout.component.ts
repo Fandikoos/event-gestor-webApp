@@ -4,6 +4,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { privateDecrypt } from 'crypto';
 import { authService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
+import { AdminAuthService } from '../../../services/admin-auth.service';
 
 @Component({
   selector: 'app-logout',
@@ -21,11 +22,13 @@ export class LogoutComponent {
 
   constructor(
     private dialogRef: MatDialogRef<LogoutComponent>, 
-    private authService: authService 
+    private authService: authService ,
+    private authAdminService: AdminAuthService
   ) {}
 
   onConfirmLogout(): void {
     this.authService.logout(); //Cerrar sesión
+    this.authAdminService.logoutAdmin();
     this.dialogRef.close(); 
     this.router.navigate(['']);
 
