@@ -1,0 +1,17 @@
+.modal-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+.form-control {
+  border-radius: 0.25rem;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}

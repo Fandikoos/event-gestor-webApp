@@ -7,6 +7,8 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { RegistrationService } from '../../services/registration.service';
 import { forkJoin, map, Observable } from 'rxjs';
 import { userInfo } from 'os';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { ModifyUserComponent } from '../modals/modify-user/modify-user.component';
 
 @Component({
   selector: 'app-profile',
@@ -23,8 +25,14 @@ export class ProfileComponent {
   private authService = inject(authService);
   private registrationService = inject(RegistrationService);
   private eventService = inject(EventsUserService);
+  private matDialogRef = inject(MatDialog);
 
-  user = signal<User | null>(null);
+  user = signal<User>({
+    id: 0,
+    name: '',
+    email: '',
+    phone: ''
+  });
   userEventsId: number[] = [];
   eventsById: Event[] = [];
   eventByIdSignal = signal<Event[]>([]);
@@ -48,7 +56,6 @@ export class ProfileComponent {
         })
       });
     })
-
   }
 
   cancelRegistration(registrationId: number){
@@ -60,5 +67,13 @@ export class ProfileComponent {
           this.eventByIdSignal.set(events);
         });
       })
+  }
+
+  openModifyUser(user: User){
+    this.matDialogRef.open(ModifyUserComponent, {
+      height: '500px',
+      width: '500px',
+      data: {user},
+    });
   }
 }

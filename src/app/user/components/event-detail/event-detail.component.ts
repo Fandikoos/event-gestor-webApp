@@ -111,7 +111,4 @@ export class EventDetailComponent{
     })
   }
 
-  
-
-
 }
