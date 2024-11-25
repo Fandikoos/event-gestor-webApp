@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { afterNextRender, ChangeDetectionStrategy, ChangeDetectorRef, Component, computed, inject, Signal, signal, WritableSignal } from '@angular/core';
+import { afterNextRender, ChangeDetectionStrategy, ChangeDetectorRef, Component, computed, effect, inject, Signal, signal, WritableSignal } from '@angular/core';
 import { authService } from '../../services/auth.service';
 import { Event, Registration, User } from '../../model/interfaces';
 import { EventsUserService } from '../../services/events-users.service';
@@ -18,7 +18,7 @@ import { ModifyUserComponent } from '../modals/modify-user/modify-user.component
   ],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css',
-  changeDetection: ChangeDetectionStrategy.Default
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProfileComponent {
 
@@ -34,7 +34,6 @@ export class ProfileComponent {
     phone: ''
   });
   userEventsId: number[] = [];
-  eventsById: Event[] = [];
   eventByIdSignal = signal<Event[]>([]);
 
   registrationsByUser: Registration[] = [];
@@ -45,17 +44,17 @@ export class ProfileComponent {
       this.user.set(userInfo);
   
       this.registrationService.getAllRegistrationsByUserId(userInfo.id).subscribe((response) => {
-        console.log(response);
         this.registrationsByUser = response;
   
         this.userEventsId = response.map(registration => registration.eventId); 
         
         this.eventService.getEventsByIds(this.userEventsId).subscribe((events) => {
-          this.eventsById = events;
-          this.eventByIdSignal.set(this.eventsById);
+          this.eventByIdSignal.set(events);
+          console.log(this.eventByIdSignal());
         })
       });
     })
+
   }
 
   cancelRegistration(registrationId: number){
