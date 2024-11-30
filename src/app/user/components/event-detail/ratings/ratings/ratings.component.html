@@ -1,7 +1,7 @@
 @if (ratingsEvent().length == 0) {
     <p>There are not many opinions yet, make your own to improve this service :D</p>
 }@else {
-    <div class="d-flex align-items-center">
+    <div class="d-flex align-items-center justify-content-center">
         <div>
             @for (star of getRatingStars(averageRating()); track $index) {
                 <i class="fa-solid text-warning" [ngClass]="{
