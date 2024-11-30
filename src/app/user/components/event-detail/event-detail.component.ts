@@ -102,6 +102,13 @@ export class EventDetailComponent{
   }
 
   openDialog(eventId: number){
+
+    if(!this.isRegistered()){
+      this.errorMessageRegister.set('You must be registered for the event to rate it');
+      return;
+    }
+
+
     this.dialog.open(PostRateComponent, {
       height : '70%',
       width: '85%',
@@ -110,8 +117,5 @@ export class EventDetailComponent{
       }
     })
   }
-
-  
-
 
 }

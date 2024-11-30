@@ -1,0 +1,40 @@
+<div class="modal-header bg-light">
+    <h5 class="modal-title w-100 text-center text-primary fw-bold">Modify User Information</h5>
+    <button type="button" class="btn-close" aria-label="Close" (click)="onClose()"></button>
+  </div>
+  <div class="modal-body bg-white p-4">
+    <form [formGroup]="modifyUserForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="name" class="form-label text-black fw-semibold">Name</label>
+        <input type="text" id="name" class="form-control text-black" formControlName="name" placeholder="Enter name" />
+        @if (modifyUserForm.controls.name.invalid && modifyUserForm.controls.name.touched) {
+            <div class="text-danger">
+                Name is required.
+              </div>
+        }
+      </div>
+  
+      <div class="mb-3">
+        <label for="email" class="form-label text-black fw-semibold">Email</label>
+        <input type="email" id="email" class="form-control" formControlName="email" placeholder="Enter email" />
+      </div>
+  
+      <div class="mb-3">
+        <label for="phone" class="form-label text-black fw-semibold">Phone Number</label>
+        <input type="text" id="phone" class="form-control" formControlName="phone" placeholder="Enter phone number" />
+      </div>
+  
+      <div class="mb-3">
+        <label for="password" class="form-label text-black fw-semibold">Password</label>
+        <input type="password" id="password" class="form-control " formControlName="password" placeholder="Enter password" />
+        @if (modifyUserForm.controls.password.invalid && modifyUserForm.controls.password.touched) {
+            <div class="text-danger">
+                Password is required.
+            </div>
+        }
+      </div>
+  
+      <button type="submit" class="btn btn-primary w-100 py-2" [disabled]="modifyUserForm.invalid">Save Changes</button>
+    </form>
+</div>
+  

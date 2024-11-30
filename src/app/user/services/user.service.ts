@@ -27,4 +27,8 @@ export class UserService {
     return this.http.post<User>(environment.apiUrlUsers, user);
   }
 
+  modifyUser(user: User, userId: number): Observable<User>{
+    return this.http.put<User>(`${environment.apiUrlUsers}/${userId}`, user);
+  }
+
 }

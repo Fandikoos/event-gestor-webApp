@@ -1,3 +1,36 @@
-:host {
-  display: block;
+.card-header.bg-gradient {
+  background: linear-gradient(to right, #ff512f, #f09819);
+  color: #fff;
 }
+
+.card-body {
+  background-color: #f8f9fa;
+}
+
+.card-body .btn-primary {
+  background-color: #ff512f;
+  border-color: #ff512f;
+}
+
+.card-body .btn-primary:hover {
+  background-color: #f09819;
+  border-color: #f09819;
+}
+
+.list-group-item {
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+.list-group-item strong {
+  font-size: 1.1rem;
+}
+
+.social-icons a {
+  color: #343a40;
+}
+
+.social-icons a:hover {
+  color: #ff512f;
+}
+

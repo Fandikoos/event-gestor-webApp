@@ -23,7 +23,6 @@
             <p class="h5 text-warning mt-auto">{{ event.price }} €</p>
     
             <div class="d-flex justify-content-between mt-3">
-              <button class="btn btn-info flex-grow-1 mr-1" style="border-radius: 20px;">Details</button>
               <button class="btn btn-danger flex-grow-1 mx-1" (click)="deleteEvent(event.id)" style="border-radius: 20px;">Delete</button>
               <button class="btn btn-success flex-grow-1 ml-1" [routerLink]="['modify-event', event.id]" style="border-radius: 20px;">Modify</button>
             </div>

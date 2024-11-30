@@ -35,3 +35,94 @@
 .form-label {
   font-weight: bold;
 }
+
+h2.display-4 {
+  font-family: 'Roboto', sans-serif;
+  color: #f1f1f1;
+  letter-spacing: 1.5px;
+}
+
+.container {
+  margin-bottom: 50px;
+}
+
+.event-image-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.event-image-card img {
+  border-radius: 20px;
+}
+
+.event-image-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4);
+}
+
+.event-details h1 {
+  font-size: 2.8rem;
+  color: #f0f0f0;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+.event-details p {
+  font-size: 1.25rem;
+}
+
+.event-info-list {
+  font-size: 1.2rem;
+}
+
+.event-info-list li {
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.event-info-list i {
+  color: #ffca28;
+  margin-right: 10px;
+}
+
+.register-btn, .rate-btn {
+  border-radius: 50px;
+  font-weight: bold;
+  padding: 10px 30px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-left: 15px;
+}
+
+.register-btn {
+  border-color: #f1f1f1;
+  color: #f1f1f1;
+}
+
+.register-btn:hover {
+  background-color: #007bff;
+  transform: translateY(-5px);
+}
+
+.rate-btn {
+  border-color: #444;
+  color: #ccc;
+}
+
+.rate-btn:hover {
+  background-color: #444;
+  transform: translateY(-5px);
+}
+
+.alert-success, .alert-danger {
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  margin-top: 20px;
+  padding: 15px;
+  text-align: center;
+}
+
+

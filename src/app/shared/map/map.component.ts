@@ -40,11 +40,11 @@ export class MapComponent implements OnInit{
       
     } else {
       this.center.set({
-        lat: 39.99419415938477,
-        lng: -3.8901003596418477,
+        lat: 41.65606,
+        lng: -0.87734,
       })
-      this.zoom.set(6);
-      this.mapTypeId = 'hybrid';
+      this.zoom.set(13);
+      this.mapTypeId = 'terrain';
     }
     
     this.options = {

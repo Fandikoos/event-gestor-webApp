@@ -8,7 +8,7 @@ export interface Event {
     description:   string;
     category:      string;
     participants:  number;
-    price:         string;
+    price:         number;
     eventImage:    string;
     registrations: Registration[];
     ratings:       Rating[];

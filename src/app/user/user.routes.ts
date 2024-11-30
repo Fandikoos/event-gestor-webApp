@@ -1,4 +1,5 @@
 import { Routes } from "@angular/router";
+import { AuthGuard } from "../auth.guard";
 
 export default [
     {
@@ -11,7 +12,8 @@ export default [
     },
     {
         path: 'myProfile/:id',
-        loadComponent: () => import('./components/profile/profile.component').then(c => c.ProfileComponent)
+        loadComponent: () => import('./components/profile/profile.component').then(c => c.ProfileComponent),
+        canActivate: [AuthGuard],
     }
 
 ] as Routes

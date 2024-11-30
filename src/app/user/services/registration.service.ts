@@ -1,10 +1,8 @@
-import { toSignal } from '@angular/core/rxjs-interop';
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Registration } from '../model/interfaces';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
-import { env } from 'node:process';
 
 @Injectable({
   providedIn: 'root'
