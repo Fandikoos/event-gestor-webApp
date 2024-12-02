@@ -1,9 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { eventModel } from '../../../core/models/event.model';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { EventsService } from '../../services/events.service';
+import { AdminAuthService } from '../../../user/services/admin-auth.service';
 
 @Component({
   selector: 'app-add-event',
@@ -30,7 +31,13 @@ export class AddEventComponent {
   };
 
   private eventApiService = inject(EventsService);
+  private adminAuthService = inject(AdminAuthService);
   private router = inject(Router);
+  adminId = signal(0);
+
+  constructor(){
+    this.adminId.set(this.adminAuthService.getUser().id);
+  }
 
 
   //Metodo para manejar la selección de imagenes para los eventos, recibimos un evento que se dispara cuando se selecciona un archivo file en el html
@@ -66,7 +73,7 @@ export class AddEventComponent {
       formData.append('eventImage', this.newEvent.eventImage); 
     }
   
-    this.eventApiService.addEvent(formData).subscribe({
+    this.eventApiService.addEvent(this.adminId(),formData).subscribe({
       next: (response: eventModel) => {
         console.log('Event added successfully', response);
         this.router.navigate(['admin']);

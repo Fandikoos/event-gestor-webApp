@@ -9,6 +9,7 @@ import { eventModel } from '../../core/models/event.model';
 export class EventsService {
 
     private apiUrl = 'http://localhost:8095/events';
+    private apiUrlAdmin = 'http://localhost:8095/admins';
 
     private httpService = inject(HttpClient);
 
@@ -17,8 +18,8 @@ export class EventsService {
     }
 
     //En la api se espera recibir un FormData en vez de JSON por el tema de la imagen y tal
-    addEvent(eventData: FormData): Observable<eventModel>{
-      return this.httpService.post<eventModel>(this.apiUrl, eventData);
+    addEvent(adminId: number ,eventData: FormData): Observable<eventModel>{
+      return this.httpService.post<eventModel>(`${this.apiUrlAdmin}/${adminId}/events`, eventData);
     }
 
     deleteEvent(eventId: number): Observable<any>{
@@ -31,5 +32,9 @@ export class EventsService {
 
     modifyEvent(eventId: number, eventData: FormData): Observable<eventModel>{
       return this.httpService.put<eventModel>(`${this.apiUrl}/${eventId}`, eventData);
+    }
+
+    getEventsByAdmin(adminId: number): Observable<eventModel[]> {
+      return this.httpService.get<eventModel[]>(`${this.apiUrlAdmin}/${adminId}/events`);
     }
 }
