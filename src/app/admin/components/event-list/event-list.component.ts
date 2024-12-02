@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 import { eventModel } from '../../../core/models/event.model';
 import { EventsService } from '../../services/events.service';
+import { AdminAuthService } from '../../../user/services/admin-auth.service';
 
 @Component({
   selector: 'app-event-list',
@@ -16,23 +17,22 @@ export default class EventListComponent implements OnInit{
 
   eventList: eventModel[] = [];
   private eventService = inject(EventsService);
+  private authAdminService = inject(AdminAuthService);
   private router = inject(Router);
+  adminId = signal(0);
 
 
   ngOnInit(): void {
+    this.adminId.set(this.authAdminService.getUser().id);
     this.getAllEvents();
   }
 
   getAllEvents(): void {
-    this.eventService.getAllEvents().subscribe({
-      next: (response: eventModel[]) => {
+    this.eventService.getEventsByAdmin(this.adminId()).subscribe(
+      (response) => {
         this.eventList = response;
-      },
-      error: (error) => {
-        console.error('Error getting the event list', error);
       }
-    }
-    );
+    )
   }
 
   deleteEvent(eventId: any): void {
